@@ -1,0 +1,237 @@
+/*!
+ *  Simple Grid
+ *  -----------
+ *
+ *  Features:
+ *    - 5, 8, 12 column grids using Flex Box
+ *    - Alignment helps for grid cells
+ *    - Mobile-first responsive design (small(s), medium(m), large(l))
+ *    - Easy to configure
+ *
+ *  License - MIT License
+ *  Copyright 2017 Made By Uppercut
+ */
+
+$corner-radius: 1.5rem;
+
+$breakpoint-small: 40em;
+$breakpoint-medium: 64em;
+$modal-container-opacity: 0;
+$modal-container-background-color: rgba(0, 0, 0, 0.5);
+$modal-background-color: rgba(255, 255, 255, 1);
+$modal-max-width: 40%;
+$modal-max-height: 60%;
+$modal-padding: 3rem;
+$modal-corner-radius: $corner-radius;
+
+@mixin flex-grid($width) {
+  -webkit-flex: 0 0 $width;
+  -ms-flex: 0 0 $width;
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+@mixin modal($width, $height) {
+  @include flex-grid($width);
+  height: $height;
+  max-height: $height;
+}
+
+@mixin bg-rgba($red, $green, $blue, $alpha) {
+  background-color: rgba($red, $green, $blue, $alpha);
+}
+
+@mixin border($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Global Helpers
+.hidden {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+// Text Alignment Helpers
+.t-center { text-align: center; }
+.t-left   { text-align: left; }
+.t-right  { text-align: right; }
+
+// Grid
+.g-r {
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+
+  /* Grid Alignment Helpers */
+  &.middle { align-items: center; }
+  &.top    { align-items: flex-start; }
+  &.bottom { align-items: flex-end; }
+  &.center { justify-content: center; }
+  &.left   { justify-content: flex-start; }
+  &.right  { justify-content: flex-end; }
+
+  .g-c-1-5, .g-c-s-1-5 { @include flex-grid(20%); }
+  .g-c-2-5, .g-c-s-2-5 { @include flex-grid(40%); }
+  .g-c-3-5, .g-c-s-3-5 { @include flex-grid(60%); }
+  .g-c-4-5, .g-c-s-4-5 { @include flex-grid(80%); }
+  .g-c-5-5, .g-c-s-5-5 { @include flex-grid(100%); }
+
+  .g-c-1-12, .g-c-s-1-12   { @include flex-grid(8.333333333%); }
+  .g-c-2-12, .g-c-s-2-12   { @include flex-grid(16.666666666%); }
+  .g-c-3-12, .g-c-s-3-12   { @include flex-grid(25%); }
+  .g-c-4-12, .g-c-s-4-12   { @include flex-grid(33.333333333%); }
+  .g-c-5-12, .g-c-s-5-12   { @include flex-grid(41.666666666%); }
+  .g-c-6-12, .g-c-s-6-12   { @include flex-grid(50%); }
+  .g-c-7-12, .g-c-s-7-12   { @include flex-grid(58.333333333%); }
+  .g-c-8-12, .g-c-s-8-12   { @include flex-grid(66.666666666%); }
+  .g-c-9-12, .g-c-s-9-12   { @include flex-grid(75%); }
+  .g-c-10-12, .g-c-s-10-12 { @include flex-grid(83.333333333%); }
+  .g-c-11-12, .g-c-s-11-12 { @include flex-grid(91.666666666%); }
+  .g-c-12-12, .g-c-s-12-12 { @include flex-grid(100%); }
+
+  .g-c-1-8, .g-c-s-1-8 { @include flex-grid(12.5%); }
+  .g-c-2-8, .g-c-s-1-8 { @include flex-grid(25%); }
+  .g-c-3-8, .g-c-s-2-8 { @include flex-grid(37.5%); }
+  .g-c-4-8, .g-c-s-3-8 { @include flex-grid(50%); }
+  .g-c-5-8, .g-c-s-4-8 { @include flex-grid(62.5%); }
+  .g-c-6-8, .g-c-s-6-8 { @include flex-grid(75%); }
+  .g-c-7-8, .g-c-s-7-8 { @include flex-grid(87.5%); }
+  .g-c-8-8, .g-c-s-8-8 { @include flex-grid(100%); }
+
+  /* every column configuration in other views would be full width */
+  [class*="g-c-m-"], [class*="g-c-l-"] {
+    @include flex-grid(100%);
+  }
+}
+
+// Visibility Helpers
+[class*="h-s"], [class*="v-m"], [class*="v-l"] {
+  display: none;
+}
+
+// Modal
+.m-container {
+  display: none;
+  background-color: $modal-container-background-color;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10000;
+
+  &.show {
+    align-items: center;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .modal {
+    @include modal(100%, 100%);
+    @include border($modal-corner-radius);
+    background-color: $modal-background-color;
+    padding: $modal-padding;
+  }
+}
+
+// Responsive Stuff
+
+/* Medium and up */
+@media screen and (min-width: $breakpoint-small) {
+  .g-r {
+    .g-c-m-1-5 { @include flex-grid(20%); }
+    .g-c-m-2-5 { @include flex-grid(40%); }
+    .g-c-m-3-5 { @include flex-grid(60%); }
+    .g-c-m-4-5 { @include flex-grid(80%); }
+    .g-c-m-5-5 { @include flex-grid(100%); }
+
+    .g-c-m-1-12  { @include flex-grid(8.333333333%); }
+    .g-c-m-2-12  { @include flex-grid(16.666666666%); }
+    .g-c-m-3-12  { @include flex-grid(25%); }
+    .g-c-m-4-12  { @include flex-grid(33.333333333%); }
+    .g-c-m-5-12  { @include flex-grid(41.666666666%); }
+    .g-c-m-6-12  { @include flex-grid(50%); }
+    .g-c-m-7-12  { @include flex-grid(58.333333333%); }
+    .g-c-m-8-12  { @include flex-grid(66.666666666%); }
+    .g-c-m-9-12  { @include flex-grid(75%); }
+    .g-c-m-10-12 { @include flex-grid(83.333333333%); }
+    .g-c-m-11-12 { @include flex-grid(91.666666666%); }
+    .g-c-m-12-12 { @include flex-grid(100%); }
+
+    .g-c-m-1-8 { @include flex-grid(12.5%); }
+    .g-c-m-1-8 { @include flex-grid(25%); }
+    .g-c-m-2-8 { @include flex-grid(37.5%); }
+    .g-c-m-3-8 { @include flex-grid(50%); }
+    .g-c-m-4-8 { @include flex-grid(62.5%); }
+    .g-c-m-6-8 { @include flex-grid(75%); }
+    .g-c-m-7-8 { @include flex-grid(87.5%); }
+    .g-c-m-8-8 { @include flex-grid(100%); }
+  }
+
+  .m-container .modal { @include modal(80%, auto); }
+
+  [class*="h-m"], .v-s-only {
+    display: none;
+  }
+
+  [class*="v-m"], .h-s-only {
+    display: initial;
+  }
+}
+
+/* Large and beyond */
+@media screen and (min-width: $breakpoint-medium) {
+  .g-r {
+    .g-c-l-1-5 { @include flex-grid(20%); }
+    .g-c-l-2-5 { @include flex-grid(40%); }
+    .g-c-l-3-5 { @include flex-grid(60%); }
+    .g-c-l-4-5 { @include flex-grid(80%); }
+    .g-c-l-5-5 { @include flex-grid(100%); }
+
+    .g-c-l-1-12  { @include flex-grid(8.333333333%); }
+    .g-c-l-2-12  { @include flex-grid(16.666666666%); }
+    .g-c-l-3-12  { @include flex-grid(25%); }
+    .g-c-l-4-12  { @include flex-grid(33.333333333%); }
+    .g-c-l-5-12  { @include flex-grid(41.666666666%); }
+    .g-c-l-6-12  { @include flex-grid(50%); }
+    .g-c-l-7-12  { @include flex-grid(58.333333333%); }
+    .g-c-l-8-12  { @include flex-grid(66.666666666%); }
+    .g-c-l-9-12  { @include flex-grid(75%); }
+    .g-c-l-10-12 { @include flex-grid(83.333333333%); }
+    .g-c-l-11-12 { @include flex-grid(91.666666666%); }
+    .g-c-l-12-12 { @include flex-grid(100%); }
+
+    .g-c-l-1-8 { @include flex-grid(12.5%); }
+    .g-c-l-1-8 { @include flex-grid(25%); }
+    .g-c-l-2-8 { @include flex-grid(37.5%); }
+    .g-c-l-3-8 { @include flex-grid(50%); }
+    .g-c-l-4-8 { @include flex-grid(62.5%); }
+    .g-c-l-6-8 { @include flex-grid(75%); }
+    .g-c-l-7-8 { @include flex-grid(87.5%); }
+    .g-c-l-8-8 { @include flex-grid(100%); }
+  }
+
+  .m-container .modal { @include modal(40%, auto); }
+
+  [class*="h-l"], .v-s-only, .v-m-only {
+    display: none;
+  }
+
+  [class*="v-l"], .h-s-only, .h-m-only {
+    display: initial;
+  }
+}

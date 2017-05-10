@@ -1,0 +1,64 @@
+@import "settings";
+
+nav[role="navigation"] {
+  position: relative;
+
+  .top {
+    align-items: center;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 1rem;
+
+    h1 {
+      color: $app-primary;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    p.tagline {
+      color: $app-primary;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    & > .search {
+      align-self: flex-end;
+    }
+
+    & > .menu {
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
+      text-align: right;
+
+      i {
+        font-size: 2rem;
+      }
+
+      input[type="checkbox"] {
+        display: none;
+
+        & ~ .menu-side {
+          background: $app-primary;
+          height: 100vh;
+          position: absolute;
+          right: -15rem;
+          text-align: left;
+          top: 0;
+          -webkit-transition: all 0.25s;
+          -moz-transition: all 0.25s;
+          -ms-transition: all 0.25s;
+          -o-transition: all 0.25s;
+          transition: all 0.25s;
+          width: 15rem;
+        }
+
+        &:checked ~ .menu-side {
+          right: 0;
+        }
+      }
+    }
+  }
+
+}
