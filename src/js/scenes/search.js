@@ -1,9 +1,10 @@
 'use strict';
 
-import '../../scss/search.scss';
-
+// libs
 import React from 'react';
-import PropTypes from 'prop-types';
+
+// assets
+import '../../scss/search.scss';
 
 export default class Search extends React.Component {
   render() {
@@ -19,16 +20,16 @@ export default class Search extends React.Component {
               </select>
             </dd>
             <dd className="meals">
-              <input type="checkbox" id="meals-lunch" value="lunch" />
+              <input type="checkbox" id="meals-lunch" value="lunch"/>
               <label htmlFor="meals-lunch">Lunch</label>
 
-              <input type="checkbox" id="meals-snacks" value="snacks" />
+              <input type="checkbox" id="meals-snacks" value="snacks"/>
               <label htmlFor="meals-snacks">Snacks</label>
 
-              <input type="checkbox" id="meals-dinner" value="dinner" />
+              <input type="checkbox" id="meals-dinner" value="dinner"/>
               <label htmlFor="meals-dinner">Dinner</label>
 
-              <input type="checkbox" id="meals-hamper" value="hamper" />
+              <input type="checkbox" id="meals-hamper" value="hamper"/>
               <label htmlFor="meals-hamper">Food Hamper</label>
             </dd>
             <dd className="idOrReferral">
@@ -38,4 +39,4 @@ export default class Search extends React.Component {
       </div>
     );
   }
-}
+};

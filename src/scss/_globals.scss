@@ -81,6 +81,10 @@ p {
   }
 }
 
+dl, dd {
+  margin: 0;
+}
+
 // Global Helpers
 * {
   -webkit-box-sizing: border-box;

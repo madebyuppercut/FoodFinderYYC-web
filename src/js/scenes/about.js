@@ -1,9 +1,12 @@
 'use strict';
 
+// libs
+import React from 'react';
+
+// assets
 import '../../scss/about.scss';
 
-import React from 'react';
-import PropTypes from 'prop-types';
+// components
 
 export default class Intro extends React.Component {
   render() {

@@ -29,13 +29,6 @@ const scssConfig = new ExtractTextWebpackPlugin({
   allChunks: true
 });
 
-const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
-  minimize: true,
-  compress: {
-    warnings: false
-  }
-});
-
 module.exports = function(env) {
   'use strict';
 
@@ -79,8 +72,7 @@ module.exports = function(env) {
       vendorConfig,
       manifestConfig,
       htmlWebpackPluginConfig,
-      scssConfig,
-      uglifyConfig
+      scssConfig
     ]
   };
 };
