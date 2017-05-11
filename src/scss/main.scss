@@ -6,16 +6,30 @@ $fa-font-path: "~font-awesome/fonts";
 @import "settings";
 @import "globals";
 
-html, body {
+html {
+  font-size: 100%;
+}
+
+body {
   color: $app-secondary;
   font-family: $base-font-family;
   font-size: $base-font-size;
   margin: 0;
   min-height: 100vh;
   overflow: hidden;
-  background: url('../img/bg.png') repeat center top;
+  background: $app-background;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
+  color: $app-primary;
+}
+
+h1 {
+  font-size: 1.3125rem;
+}
+
+.b {
+  background: $app-secondary;
+  color: $app-background;
 }
