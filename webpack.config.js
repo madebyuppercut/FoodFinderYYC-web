@@ -66,6 +66,7 @@ module.exports = function(env) {
         loader: 'file-loader?name=img/[name].[ext]'
       }]
     },
+    devServer: { historyApiFallback: true },
     plugins: [
       vendorConfig,
       manifestConfig,
