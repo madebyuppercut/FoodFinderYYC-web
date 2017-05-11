@@ -29,6 +29,13 @@ const scssConfig = new ExtractTextWebpackPlugin({
   allChunks: true
 });
 
+const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
+  minimize: true,
+  compress: {
+    warnings: false
+  }
+});
+
 module.exports = function(env) {
   'use strict';
 
@@ -66,12 +73,14 @@ module.exports = function(env) {
         loader: 'file-loader?name=img/[name].[ext]'
       }]
     },
+    devtool: 'source-map',
     devServer: { historyApiFallback: true },
     plugins: [
       vendorConfig,
       manifestConfig,
       htmlWebpackPluginConfig,
-      scssConfig
+      scssConfig,
+      uglifyConfig
     ]
   };
 };
