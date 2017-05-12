@@ -205,10 +205,10 @@ dl, dd {
   .g-c-12-12, .g-c-s-12-12 { @include flex-grid(100%); }
 
   .g-c-1-8, .g-c-s-1-8 { @include flex-grid(12.5%); }
-  .g-c-2-8, .g-c-s-1-8 { @include flex-grid(25%); }
-  .g-c-3-8, .g-c-s-2-8 { @include flex-grid(37.5%); }
-  .g-c-4-8, .g-c-s-3-8 { @include flex-grid(50%); }
-  .g-c-5-8, .g-c-s-4-8 { @include flex-grid(62.5%); }
+  .g-c-2-8, .g-c-s-2-8 { @include flex-grid(25%); }
+  .g-c-3-8, .g-c-s-3-8 { @include flex-grid(37.5%); }
+  .g-c-4-8, .g-c-s-4-8 { @include flex-grid(50%); }
+  .g-c-5-8, .g-c-s-5-8 { @include flex-grid(62.5%); }
   .g-c-6-8, .g-c-s-6-8 { @include flex-grid(75%); }
   .g-c-7-8, .g-c-s-7-8 { @include flex-grid(87.5%); }
   .g-c-8-8, .g-c-s-8-8 { @include flex-grid(100%); }

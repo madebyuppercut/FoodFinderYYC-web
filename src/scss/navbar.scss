@@ -32,9 +32,19 @@ nav[role="navigation"] {
       display: inline-block;
       vertical-align: middle;
     }
+
+    .search .fa {
+      font-size: 1.5rem;
+    }
+
+    .search {
+      display: none;
+    }
   }
 
   .menu {
+    overflow: hidden;
+
     label {
       font-size: 2rem;
     }
@@ -87,6 +97,16 @@ nav[role="navigation"] {
             text-transform: uppercase;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 40em) {
+  nav[role="navigation"] {
+    .menu-search {
+      .search {
+        display: inline-block;
       }
     }
   }

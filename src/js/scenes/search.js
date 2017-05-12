@@ -39,7 +39,7 @@ export default class Search extends React.Component {
                 </li>
               </ul>
             </dd>
-            <dd className="no-id">
+            <dd className="no-id h-s-only">
               <input type="checkbox" id="no-id" name="no-id" defaultChecked={false}/>
               <label htmlFor="no-id">I have no ID or referrals</label>
             </dd>
