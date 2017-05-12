@@ -33,27 +33,23 @@ export default class Routes extends React.Component {
 
     let Redirect;
 
-    /*
     if (hasCookie) {
       Redirect = Search;
     } else {
       Redirect = SignUp;
-      //cookies.set('skipIntro', true);
+      cookies.set('skipIntro', true);
     }
-
-     <Route exact={true} path="/" component={Redirect} />
-     <Route path="/search" component={Search} />
-     <Route path="/about" component={About} />
-     <Route path="/privacy" component={Privacy} />
-     <Route component={NotFound} />
-
-    */
 
     return (
       <BrowserRouter history={Router.history}>
         <App>
           <Switch>
-            <Route component={SignUp} />
+            <Route exact={true} path="/" component={Redirect} />
+            <Route path="/search" component={Search} />
+            <Route path="/about" component={About} />
+            <Route path="/intro" component={Intro} />
+            <Route path="/privacy" component={Privacy} />
+            <Route component={NotFound} />
           </Switch>
         </App>
       </BrowserRouter>
