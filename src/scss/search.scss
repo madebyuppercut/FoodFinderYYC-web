@@ -10,6 +10,10 @@
     display: block;
     text-align: center;
 
+    .select-wrapper {
+      position: relative;
+    }
+
     select {
       background: $app-secondary;
       border: none;
@@ -20,9 +24,21 @@
       padding: 0.5rem;
       text-align-last: center;
       -webkit-appearance: none;
+      width: 100%;
 
       &::-ms-expand {
         display: none;
+      }
+    }
+
+    label {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+
+      .fa {
+        color: $app-background;
+        font-size: 0.5625rem;
       }
     }
   }

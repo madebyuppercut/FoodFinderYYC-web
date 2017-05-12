@@ -13,11 +13,14 @@ export default class Search extends React.Component {
         <form>
           <dl>
             <dd className="day">
-              <select name="day">
-                <option value="0">Today</option>
-                <option value="1">Tomorrow</option>
-                <option value="2">2 Days from now</option>
-              </select>
+              <div className="select-wrapper">
+                <label htmlFor="day"><i className="fa fa-chevron-down"></i></label>
+                <select name="day" id="day">
+                  <option value="0">Today</option>
+                  <option value="1">Tomorrow</option>
+                  <option value="2">2 Days from now</option>
+                </select>
+              </div>
             </dd>
             <dd className="meals">
               <ul>

@@ -33,12 +33,17 @@ nav[role="navigation"] {
       vertical-align: middle;
     }
 
-    .search .fa {
-      font-size: 1.5rem;
-    }
-
     .search {
       display: none;
+      min-width: 40%;
+
+      input[type="text"] {
+        width: 80%;
+      }
+
+      .fa {
+        font-size: 1.5rem;
+      }
     }
   }
 
