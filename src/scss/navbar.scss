@@ -1,6 +1,10 @@
 @import "settings";
 
 nav[role="navigation"] {
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
   align-items: center;
   background: white;
   display: flex;
@@ -21,17 +25,16 @@ nav[role="navigation"] {
     margin: 0;
   }
 
-  .search {
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
+  .menu-search {
     text-align: right;
+
+    & > div {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   .menu {
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    text-align: right;
-
     label {
       font-size: 2rem;
     }
@@ -85,15 +88,6 @@ nav[role="navigation"] {
           }
         }
       }
-    }
-  }
-}
-
-@media screen and (min-width: 40em) {
-  nav[role="navigation"] {
-    .menu {
-      -webkit-flex-grow: 0;
-      flex-grow: 0;
     }
   }
 }

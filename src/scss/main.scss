@@ -33,3 +33,13 @@ h1 {
   background: $app-secondary;
   color: $app-background;
 }
+
+input[type="text"],
+input[type="email"] {
+  border: 1px solid #ccc;
+  color: $app-secondary;
+  font-family: $font-family-primary;
+  font-size: $base-font-size;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+}

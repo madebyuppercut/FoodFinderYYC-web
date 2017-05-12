@@ -30,20 +30,22 @@ export default class Navbar extends React.Component {
             <NavLink to="/"><img src={Logo} alt="Food Finder YYC" className="logo v-m"/></NavLink>
             <NavLink to="/"><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only"/></NavLink>
           </div>
-          <div className="search h-s-only p-lr-1">
-            <i className="fa fa-search"></i>
-            <input type="text" placeholder="Search" />
-          </div>
-          <div className="menu p-lr-1">
-            <input type="checkbox" id="menu-toggle" value="" />
-            <label htmlFor="menu-toggle"><i className="fa fa-bars"></i></label>
-            <div className="menu-side">
-              <label htmlFor="menu-toggle"><i className="fa fa-close"></i></label>
-              <ul>
-                <li><NavLink to="/about">about us</NavLink></li>
-                <li><NavLink to="/privacy">privacy</NavLink></li>
-              </ul>
-              &copy; {copyrightYear} {title}
+          <div className="menu-search g-c-s-7-8 g-c-m-8-12 g-c-l-10-12">
+            <div className="search h-s-only p-lr-1">
+              <i className="fa fa-search"></i>
+              <input type="text" placeholder="Search" />
+            </div>
+            <div className="menu p-lr-1">
+              <input type="checkbox" id="menu-toggle" value="" />
+              <label htmlFor="menu-toggle"><i className="fa fa-bars"></i></label>
+              <div className="menu-side">
+                <label htmlFor="menu-toggle"><i className="fa fa-close"></i></label>
+                <ul>
+                  <li><NavLink to="/about">about us</NavLink></li>
+                  <li><NavLink to="/privacy">privacy</NavLink></li>
+                </ul>
+                &copy; {copyrightYear} {title}
+              </div>
             </div>
           </div>
         </nav>

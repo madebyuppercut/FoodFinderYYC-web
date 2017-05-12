@@ -66,6 +66,12 @@ $modal-corner-radius: $corner-radius;
 // Style Reset
 a {
   text-decoration: none;
+
+  img {
+    text-decoration:none;
+    border:0;
+    outline:none;
+  }
 }
 
 img {
@@ -126,6 +132,7 @@ dl, dd {
 
 // Grid
 .g-r {
+  display: -ms-flexbox;
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -135,12 +142,48 @@ dl, dd {
   width: 100%;
 
   /* Grid Alignment Helpers */
-  &.middle { align-items: center; }
-  &.top    { align-items: flex-start; }
-  &.bottom { align-items: flex-end; }
-  &.center { justify-content: center; }
-  &.left   { justify-content: flex-start; }
-  &.right  { justify-content: flex-end; }
+  &.middle {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-line-pack: center;
+    -webkit-align-content: center;
+    align-items: center;
+  }
+  &.top {
+    -webkit-box-align: flex-start;
+    -moz-box-align: flex-start;
+    -ms-flex-line-pack: flex-start;
+    -webkit-align-content: flex-start;
+    align-items: flex-start;
+  }
+  &.bottom {
+    -webkit-box-align: flex-end;
+    -moz-box-align: flex-end;
+    -ms-flex-line-pack: flex-end;
+    -webkit-align-content: flex-end;
+    align-items: flex-end;
+  }
+  &.center {
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  &.left {
+    -webkit-box-pack: flex-start;
+    -moz-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+  }
+  &.right {
+    -webkit-box-pack: flex-end;
+    -moz-box-pack: flex-end;
+    -ms-flex-pack: flex-end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+  }
 
   .g-c-1-5, .g-c-s-1-5 { @include flex-grid(20%); }
   .g-c-2-5, .g-c-s-2-5 { @include flex-grid(40%); }
@@ -267,7 +310,7 @@ dl, dd {
   }
 
   [class*="v-m"], .h-s-only {
-    display: initial;
+    display: block;
   }
 }
 
@@ -312,6 +355,6 @@ dl, dd {
   }
 
   [class*="v-l"], .h-s-only, .h-m-only {
-    display: initial;
+    display: block;
   }
 }

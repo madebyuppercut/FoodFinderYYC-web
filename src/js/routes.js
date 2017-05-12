@@ -11,6 +11,7 @@ import {
 import Cookies from 'universal-cookie';
 
 import App from './containers/app';
+import SignUp from './scenes/signUp';
 import Intro from './scenes/intro';
 import About from './scenes/about';
 import Privacy from './scenes/privacy';
@@ -32,22 +33,27 @@ export default class Routes extends React.Component {
 
     let Redirect;
 
+    /*
     if (hasCookie) {
       Redirect = Search;
     } else {
-      Redirect = Intro;
-      cookies.set('skipIntro', true);
+      Redirect = SignUp;
+      //cookies.set('skipIntro', true);
     }
+
+     <Route exact={true} path="/" component={Redirect} />
+     <Route path="/search" component={Search} />
+     <Route path="/about" component={About} />
+     <Route path="/privacy" component={Privacy} />
+     <Route component={NotFound} />
+
+    */
 
     return (
       <BrowserRouter history={Router.history}>
         <App>
           <Switch>
-            <Route exact={true} path="/" component={Redirect} />
-            <Route path="/search" component={Search} />
-            <Route path="/about" component={About} />
-            <Route path="/privacy" component={Privacy} />
-            <Route component={NotFound} />
+            <Route component={SignUp} />
           </Switch>
         </App>
       </BrowserRouter>
