@@ -1,0 +1,45 @@
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+@import "settings";
+@import "globals";
+
+html {
+  font-size: 100%;
+}
+
+body {
+  color: $app-secondary;
+  font-family: $font-family-primary;
+  font-size: $base-font-size;
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background: $app-background;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-secondary;
+  color: $app-primary;
+}
+
+h1 {
+  font-size: 1.3125rem;
+}
+
+.b {
+  background: $app-secondary;
+  color: $app-background;
+}
+
+input[type="text"],
+input[type="email"] {
+  border: 1px solid #ccc;
+  color: $app-secondary;
+  font-family: $font-family-primary;
+  font-size: $base-font-size;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+}

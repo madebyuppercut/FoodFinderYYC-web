@@ -1,0 +1,360 @@
+/*!
+ *  Simple Grid
+ *  -----------
+ *
+ *  Features:
+ *    - 5, 8, 12 column grids using Flex Box
+ *    - Alignment helps for grid cells
+ *    - Mobile-first responsive design (small(s), medium(m), large(l))
+ *    - Easy to configure
+ *
+ *  License - MIT License
+ *  Copyright 2017 Made By Uppercut
+ */
+
+$corner-radius: 1.5rem;
+$container-padding: 3rem;
+$spacing: 2rem;
+
+$numberOfMarginPaddingClasses: 6;
+
+$button-horizontal-padding: 2rem;
+$button-vertical-padding: 1rem;
+
+$breakpoint-small: 40em;
+$breakpoint-medium: 64em;
+$full-screen-container-background-color: white;
+
+$modal-container-opacity: 0;
+$modal-container-background-color: rgba(0, 0, 0, 0.5);
+$modal-background-color: white;
+$modal-max-width: 40%;
+$modal-max-height: 60%;
+$modal-padding: $container-padding;
+$modal-corner-radius: $corner-radius;
+
+@mixin flex-grid($width) {
+  -webkit-flex: 0 0 $width;
+  -ms-flex: 0 0 $width;
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+@mixin modal($width, $height) {
+  @include flex-grid($width);
+  height: $height;
+  max-height: $height;
+}
+
+@mixin bg-rgba($red, $green, $blue, $alpha) {
+  background-color: rgba($red, $green, $blue, $alpha);
+}
+
+@mixin border($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin padOrMargin($type, $sides, $unit) {
+  @each $side in $sides {
+      #{$type}-#{$side}: $unit;
+  }
+}
+
+// Style Reset
+a {
+  text-decoration: none;
+
+  img {
+    text-decoration:none;
+    border:0;
+    outline:none;
+  }
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+p {
+  margin: $spacing 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+dl, dd {
+  margin: 0;
+}
+
+// Global Helpers
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none !important;
+}
+
+// Text Alignment Helpers
+.t-center { text-align: center; }
+.t-left   { text-align: left; }
+.t-right  { text-align: right; }
+
+// Padding and Margin Helpers
+@for $i from 1 through $numberOfMarginPaddingClasses {
+  .m-t-#{$i} { @include padOrMargin(margin, top, #{$i}rem); }
+  .m-b-#{$i} { @include padOrMargin(margin, bottom, #{$i}rem); }
+  .m-l-#{$i} { @include padOrMargin(margin, left, #{$i}rem); }
+  .m-r-#{$i} { @include padOrMargin(margin, right, #{$i}rem); }
+
+  .m-tb-#{$i} { @include padOrMargin(margin, top bottom, #{$i}rem); }
+  .m-lr-#{$i} { @include padOrMargin(margin, left right, #{$i}rem); }
+
+  .m-a-#{$i} { @include padOrMargin(margin, top bottom left right, #{$i}rem); }
+
+  .p-t-#{$i} { @include padOrMargin(padding, top, #{$i}rem); }
+  .p-b-#{$i} { @include padOrMargin(padding, bottom, #{$i}rem); }
+  .p-l-#{$i} { @include padOrMargin(padding, left, #{$i}rem); }
+  .p-r-#{$i} { @include padOrMargin(padding, right, #{$i}rem); }
+
+  .p-tb-#{$i} { @include padOrMargin(padding, top bottom, #{$i}rem); }
+  .p-lr-#{$i} { @include padOrMargin(padding, left right, #{$i}rem); }
+
+  .p-a-#{$i} { @include padOrMargin(padding, top bottom left right, #{$i}rem); }
+}
+
+// Grid
+.g-r {
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  width: 100%;
+
+  /* Grid Alignment Helpers */
+  &.middle {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-line-pack: center;
+    -webkit-align-content: center;
+    align-items: center;
+  }
+  &.top {
+    -webkit-box-align: flex-start;
+    -moz-box-align: flex-start;
+    -ms-flex-line-pack: flex-start;
+    -webkit-align-content: flex-start;
+    align-items: flex-start;
+  }
+  &.bottom {
+    -webkit-box-align: flex-end;
+    -moz-box-align: flex-end;
+    -ms-flex-line-pack: flex-end;
+    -webkit-align-content: flex-end;
+    align-items: flex-end;
+  }
+  &.center {
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  &.left {
+    -webkit-box-pack: flex-start;
+    -moz-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+  }
+  &.right {
+    -webkit-box-pack: flex-end;
+    -moz-box-pack: flex-end;
+    -ms-flex-pack: flex-end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+  }
+
+  .g-c-1-5, .g-c-s-1-5 { @include flex-grid(20%); }
+  .g-c-2-5, .g-c-s-2-5 { @include flex-grid(40%); }
+  .g-c-3-5, .g-c-s-3-5 { @include flex-grid(60%); }
+  .g-c-4-5, .g-c-s-4-5 { @include flex-grid(80%); }
+  .g-c-5-5, .g-c-s-5-5 { @include flex-grid(100%); }
+
+  .g-c-1-12, .g-c-s-1-12   { @include flex-grid(8.333333333%); }
+  .g-c-2-12, .g-c-s-2-12   { @include flex-grid(16.666666666%); }
+  .g-c-3-12, .g-c-s-3-12   { @include flex-grid(25%); }
+  .g-c-4-12, .g-c-s-4-12   { @include flex-grid(33.333333333%); }
+  .g-c-5-12, .g-c-s-5-12   { @include flex-grid(41.666666666%); }
+  .g-c-6-12, .g-c-s-6-12   { @include flex-grid(50%); }
+  .g-c-7-12, .g-c-s-7-12   { @include flex-grid(58.333333333%); }
+  .g-c-8-12, .g-c-s-8-12   { @include flex-grid(66.666666666%); }
+  .g-c-9-12, .g-c-s-9-12   { @include flex-grid(75%); }
+  .g-c-10-12, .g-c-s-10-12 { @include flex-grid(83.333333333%); }
+  .g-c-11-12, .g-c-s-11-12 { @include flex-grid(91.666666666%); }
+  .g-c-12-12, .g-c-s-12-12 { @include flex-grid(100%); }
+
+  .g-c-1-8, .g-c-s-1-8 { @include flex-grid(12.5%); }
+  .g-c-2-8, .g-c-s-1-8 { @include flex-grid(25%); }
+  .g-c-3-8, .g-c-s-2-8 { @include flex-grid(37.5%); }
+  .g-c-4-8, .g-c-s-3-8 { @include flex-grid(50%); }
+  .g-c-5-8, .g-c-s-4-8 { @include flex-grid(62.5%); }
+  .g-c-6-8, .g-c-s-6-8 { @include flex-grid(75%); }
+  .g-c-7-8, .g-c-s-7-8 { @include flex-grid(87.5%); }
+  .g-c-8-8, .g-c-s-8-8 { @include flex-grid(100%); }
+}
+
+// Visibility Helpers
+[class*="h-s"], [class*="v-m"], [class*="v-l"] {
+  display: none;
+}
+
+// Full Screen
+.w-fs {
+  background-color: $full-screen-container-background-color;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10000;
+
+  .fs {
+    padding: $container-padding;
+  }
+}
+
+// Modal
+.w-m {
+  @extend .w-fs;
+  background-color: $modal-container-background-color;
+  display: none;
+  z-index: 10100;
+
+  &.show {
+    align-items: center;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .m {
+    @include modal(100%, 100%);
+    background-color: $modal-background-color;
+    padding: $modal-padding;
+  }
+}
+
+// Button
+.b {
+  @include padOrMargin(padding, top bottom, $button-vertical-padding);
+  @include padOrMargin(padding, left right, $button-horizontal-padding);
+
+  cursor: pointer;
+  display: inline-block;
+}
+
+// Responsive Stuff
+
+/* Medium and up */
+@media screen and (min-width: $breakpoint-small) {
+  .g-r {
+    .g-c-m-1-5 { @include flex-grid(20%); }
+    .g-c-m-2-5 { @include flex-grid(40%); }
+    .g-c-m-3-5 { @include flex-grid(60%); }
+    .g-c-m-4-5 { @include flex-grid(80%); }
+    .g-c-m-5-5 { @include flex-grid(100%); }
+
+    .g-c-m-1-12  { @include flex-grid(8.333333333%); }
+    .g-c-m-2-12  { @include flex-grid(16.666666666%); }
+    .g-c-m-3-12  { @include flex-grid(25%); }
+    .g-c-m-4-12  { @include flex-grid(33.333333333%); }
+    .g-c-m-5-12  { @include flex-grid(41.666666666%); }
+    .g-c-m-6-12  { @include flex-grid(50%); }
+    .g-c-m-7-12  { @include flex-grid(58.333333333%); }
+    .g-c-m-8-12  { @include flex-grid(66.666666666%); }
+    .g-c-m-9-12  { @include flex-grid(75%); }
+    .g-c-m-10-12 { @include flex-grid(83.333333333%); }
+    .g-c-m-11-12 { @include flex-grid(91.666666666%); }
+    .g-c-m-12-12 { @include flex-grid(100%); }
+
+    .g-c-m-1-8 { @include flex-grid(12.5%); }
+    .g-c-m-1-8 { @include flex-grid(25%); }
+    .g-c-m-2-8 { @include flex-grid(37.5%); }
+    .g-c-m-3-8 { @include flex-grid(50%); }
+    .g-c-m-4-8 { @include flex-grid(62.5%); }
+    .g-c-m-6-8 { @include flex-grid(75%); }
+    .g-c-m-7-8 { @include flex-grid(87.5%); }
+    .g-c-m-8-8 { @include flex-grid(100%); }
+  }
+
+  .w-m .m {
+    @include modal(80%, auto);
+    @include border($modal-corner-radius);
+  }
+
+  [class*="h-m"], .v-s-only {
+    display: none;
+  }
+
+  [class*="v-m"], .h-s-only {
+    display: block;
+  }
+}
+
+/* Large and beyond */
+@media screen and (min-width: $breakpoint-medium) {
+  .g-r {
+    .g-c-l-1-5 { @include flex-grid(20%); }
+    .g-c-l-2-5 { @include flex-grid(40%); }
+    .g-c-l-3-5 { @include flex-grid(60%); }
+    .g-c-l-4-5 { @include flex-grid(80%); }
+    .g-c-l-5-5 { @include flex-grid(100%); }
+
+    .g-c-l-1-12  { @include flex-grid(8.333333333%); }
+    .g-c-l-2-12  { @include flex-grid(16.666666666%); }
+    .g-c-l-3-12  { @include flex-grid(25%); }
+    .g-c-l-4-12  { @include flex-grid(33.333333333%); }
+    .g-c-l-5-12  { @include flex-grid(41.666666666%); }
+    .g-c-l-6-12  { @include flex-grid(50%); }
+    .g-c-l-7-12  { @include flex-grid(58.333333333%); }
+    .g-c-l-8-12  { @include flex-grid(66.666666666%); }
+    .g-c-l-9-12  { @include flex-grid(75%); }
+    .g-c-l-10-12 { @include flex-grid(83.333333333%); }
+    .g-c-l-11-12 { @include flex-grid(91.666666666%); }
+    .g-c-l-12-12 { @include flex-grid(100%); }
+
+    .g-c-l-1-8 { @include flex-grid(12.5%); }
+    .g-c-l-1-8 { @include flex-grid(25%); }
+    .g-c-l-2-8 { @include flex-grid(37.5%); }
+    .g-c-l-3-8 { @include flex-grid(50%); }
+    .g-c-l-4-8 { @include flex-grid(62.5%); }
+    .g-c-l-6-8 { @include flex-grid(75%); }
+    .g-c-l-7-8 { @include flex-grid(87.5%); }
+    .g-c-l-8-8 { @include flex-grid(100%); }
+  }
+
+  .w-m .m {
+    @include modal(40%, auto);
+  }
+
+  [class*="h-l"], .v-s-only, .v-m-only {
+    display: none;
+  }
+
+  [class*="v-l"], .h-s-only, .h-m-only {
+    display: block;
+  }
+}
