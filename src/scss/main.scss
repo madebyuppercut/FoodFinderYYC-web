@@ -29,6 +29,11 @@ h1 {
   font-size: 1.3125rem;
 }
 
+p.tag {
+  font-family: $font-family-primary;
+  font-size: 1.25rem;
+}
+
 .b {
   background: $app-secondary;
   color: $app-background;

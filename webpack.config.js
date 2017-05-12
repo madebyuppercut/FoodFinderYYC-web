@@ -29,6 +29,17 @@ const scssConfig = new ExtractTextWebpackPlugin({
   allChunks: true
 });
 
+const appConfig = new webpack.DefinePlugin({
+  'process.env': {
+    NODE_ENV: JSON.stringify('development')
+  },
+  PARSE: {
+    APP_ID: '228c8867f1bc58ed6ee57109827d4256ebc643ca',
+    JS_KEY: 'b5e0a519d4c9e9276bcc779b7766d0a1e5708198',
+    URL: 'https://food-finder-yyc-parse-dev.herokuapp.com/parse'
+  }
+});
+
 module.exports = function(env) {
   'use strict';
 
@@ -69,6 +80,7 @@ module.exports = function(env) {
     devtool: 'source-map',
     devServer: { historyApiFallback: true },
     plugins: [
+      appConfig,
       vendorConfig,
       manifestConfig,
       htmlWebpackPluginConfig,

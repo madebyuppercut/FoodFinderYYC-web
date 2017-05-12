@@ -36,7 +36,7 @@ const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
   }
 });
 
-const defineConfig = new webpack.DefinePlugin({
+const appConfig = new webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: JSON.stringify('production')
   }
@@ -80,7 +80,7 @@ module.exports = function(env) {
       }]
     },
     plugins: [
-      defineConfig,
+      appConfig,
       vendorConfig,
       manifestConfig,
       htmlWebpackPluginConfig,

@@ -11,10 +11,6 @@ const application = {
 }
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let title = application.title;
 
