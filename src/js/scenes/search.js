@@ -20,19 +20,28 @@ export default class Search extends React.Component {
               </select>
             </dd>
             <dd className="meals">
-              <input type="checkbox" id="meals-lunch" value="lunch"/>
-              <label htmlFor="meals-lunch">Lunch</label>
-
-              <input type="checkbox" id="meals-snacks" value="snacks"/>
-              <label htmlFor="meals-snacks">Snacks</label>
-
-              <input type="checkbox" id="meals-dinner" value="dinner"/>
-              <label htmlFor="meals-dinner">Dinner</label>
-
-              <input type="checkbox" id="meals-hamper" value="hamper"/>
-              <label htmlFor="meals-hamper">Food Hamper</label>
+              <ul>
+                <li>
+                  <input type="checkbox" id="meals-lunch" name="[meals]" value="lunch" className="hidden" defaultChecked/>
+                  <label htmlFor="meals-lunch">Lunch</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="meals-snacks" name="[meals]" value="snacks" className="hidden"/>
+                  <label htmlFor="meals-snacks">Snacks</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="meals-dinner" name="[meals]" value="dinner" className="hidden"/>
+                  <label htmlFor="meals-dinner">Dinner</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="meals-hamper" name="[meals]" value="hamper" className="hidden"/>
+                  <label htmlFor="meals-hamper">Food Hamper</label>
+                </li>
+              </ul>
             </dd>
-            <dd className="idOrReferral">
+            <dd className="no-id">
+              <input type="checkbox" id="no-id" name="no-id" defaultChecked={false}/>
+              <label htmlFor="no-id">I have no ID or referrals</label>
             </dd>
           </dl>
         </form>
