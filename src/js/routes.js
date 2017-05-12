@@ -11,7 +11,7 @@ import {
 import Cookies from 'universal-cookie';
 
 import App from './containers/app';
-import SignUp from './scenes/signUp';
+import SignUp from './scenes/signup';
 import Intro from './scenes/intro';
 import About from './scenes/about';
 import Privacy from './scenes/privacy';
