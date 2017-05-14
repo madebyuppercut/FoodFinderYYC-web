@@ -7,6 +7,9 @@ import Parse from 'parse';
 // assets
 import '../../scss/search.scss';
 
+// components
+import Map from '../components/map';
+
 const config = {
   PARSE: PARSE
 };
@@ -28,44 +31,56 @@ export default class Search extends React.Component {
         noId: false
       }
     };
-
-    this.input = {};
   }
 
   componentDidMount() {
     Parse.initialize(config.PARSE.APP_ID, config.PARSE.JS_KEY);
     Parse.serverURL = config.PARSE.URL;
+    //Parse.serverURL = 'http://localhost:8081/parse';
+
+    this.search(this.state.params);
   }
 
   search(params) {
-    console.log(params);
+    let searchParams = {};
+    let dateTimeNow = new Date();
+    let date = new Date(((dateTimeNow).getTime() + (24 * 60 * 60 * params.day)) * 1000);
+
+    searchParams.date = date.toString();
+    searchParams.dateTimeNow = dateTimeNow.toString();
+    searchParams.noIdNorReferral = params.noId;
+    searchParams.meals = Object.keys(params.meals).filter(key => { return params.meals[key]; });
+
+    Parse.Cloud.run('search', searchParams)
+      .then(
+        locations => {
+          this.setState({locations: locations});
+        }
+      );
   }
 
   onChangeDay(e) {
-    var target = e.target;
-    var state = Object.assign({}, this.state);
+    let state = this.state.params;
 
-    state.params.day = parseInt(target.value);
+    state.day = parseInt(e.target.value);
     this.setState(state);
-    this.search(this.state.params);
+    this.search(state);
   }
 
   onChangeMeal(e) {
-    var target = e.target;
-    var state = Object.assign({}, this.state);
+    let state = this.state.params;
 
-    state.params.meals[target.value] = target.checked;
+    state.meals[e.target.value] = e.target.checked;
     this.setState(state);
-    this.search(this.state.params);
+    this.search(state);
   }
 
   onChangeId(e) {
-    var target = e.target;
-    var state = Object.assign({}, this.state);
+    let state = this.state.params;
 
-    state.params.noId = target.checked;
+    state.noId = e.target.checked;
     this.setState(state);
-    this.search(this.state.params);
+    this.search(state);
   }
 
   onSubmit(e) {
@@ -74,6 +89,14 @@ export default class Search extends React.Component {
   }
 
   render() {
+    let locations = this.state.locations.map(location => {
+      return {
+        day: location.day,
+        now: location.now,
+        object: location.object.toJSON()
+      };
+    });
+
     return (
       <div className="search">
         <form onSubmit={this.onSubmit.bind(this)}>
@@ -114,6 +137,11 @@ export default class Search extends React.Component {
             </dd>
           </dl>
         </form>
+        <section className="map">
+          <Map locations={locations}/>
+        </section>
+        <section className="list hidden">
+        </section>
       </div>
     );
   }

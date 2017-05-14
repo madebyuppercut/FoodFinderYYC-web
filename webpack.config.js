@@ -35,9 +35,13 @@ const appConfig = new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify('development')
   },
   PARSE: {
-    APP_ID: config.parse.app_id,
-    JS_KEY: config.parse.js_key,
-    URL: config.parse.url
+    APP_ID: JSON.stringify(config.parse.app_id),
+    JS_KEY: JSON.stringify(config.parse.js_key),
+    URL: JSON.stringify(config.parse.url)
+  },
+  GOOGLE: {
+    MAP: JSON.stringify(config.google.map),
+    GA: JSON.stringify(config.google.ga)
   }
 });
 
