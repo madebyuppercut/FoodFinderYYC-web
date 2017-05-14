@@ -39,6 +39,11 @@ const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
 const appConfig = new webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: JSON.stringify('production')
+  },
+  PARSE: {
+    APP_ID: JSON.stringify(process.env.PARSE_APP_ID),
+    JS_KEY: JSON.stringify(process.env.PARSE_JS_KEY),
+    URL: JSON.stringify(process.env.PARSE_URL)
   }
 });
 

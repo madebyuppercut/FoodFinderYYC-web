@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const config = require('./config.json');
 
 const srcPath = __dirname + '/src';
 const distPath = __dirname + '/dist';
@@ -34,13 +35,13 @@ const appConfig = new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify('development')
   },
   PARSE: {
-    APP_ID: '228c8867f1bc58ed6ee57109827d4256ebc643ca',
-    JS_KEY: 'b5e0a519d4c9e9276bcc779b7766d0a1e5708198',
-    URL: 'https://food-finder-yyc-parse-dev.herokuapp.com/parse'
+    APP_ID: config.parse.app_id,
+    JS_KEY: config.parse.js_key,
+    URL: config.parse.url
   }
 });
 
-module.exports = function(env) {
+module.exports = function() {
   'use strict';
 
   return {
