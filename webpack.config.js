@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const config = require('./config.json');
 
 const srcPath = __dirname + '/src';
@@ -29,6 +30,8 @@ const scssConfig = new ExtractTextWebpackPlugin({
   filename: "[name].[contenthash].css",
   allChunks: true
 });
+
+const faviconConfig = new FaviconsWebpackPlugin(srcPath + '/ffyyc-favicon.png');
 
 const appConfig = new webpack.DefinePlugin({
   'process.env': {
@@ -88,6 +91,7 @@ module.exports = function() {
       appConfig,
       vendorConfig,
       manifestConfig,
+      faviconConfig,
       htmlWebpackPluginConfig,
       scssConfig
     ]

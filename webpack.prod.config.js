@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const srcPath = __dirname + '/src';
 const distPath = __dirname + '/dist';
@@ -28,6 +29,8 @@ const scssConfig = new ExtractTextWebpackPlugin({
   filename: "[name].[contenthash].css",
   allChunks: true
 });
+
+const faviconConfig = new FaviconsWebpackPlugin(srcPath + '/ffyyc-favicon.png');
 
 const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
   minimize: true,
@@ -92,6 +95,7 @@ module.exports = function(env) {
       appConfig,
       vendorConfig,
       manifestConfig,
+      faviconConfig,
       htmlWebpackPluginConfig,
       scssConfig,
       uglifyConfig
