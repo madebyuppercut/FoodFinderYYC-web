@@ -4,6 +4,13 @@
   font-family: $font-family-secondary;
   font-size: 0.5625rem;
 
+  form {
+    background-color: $app-background;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+  }
+
   dd.day {
     background: $app-secondary;
     border-bottom: 1px solid $app-background;

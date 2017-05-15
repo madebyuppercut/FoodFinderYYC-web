@@ -44,7 +44,7 @@ export default class Search extends React.Component {
   search(params) {
     let searchParams = {};
     let dateTimeNow = new Date();
-    let date = new Date(((dateTimeNow).getTime() + (24 * 60 * 60 * params.day)) * 1000);
+    let date = new Date((dateTimeNow).getTime() + (24 * 60 * 60 * params.day * 1000));
 
     searchParams.date = date.toString();
     searchParams.dateTimeNow = dateTimeNow.toString();
@@ -137,9 +137,7 @@ export default class Search extends React.Component {
             </dd>
           </dl>
         </form>
-        <section className="map">
-          <Map locations={locations}/>
-        </section>
+        <Map locations={locations}/>
         <section className="list hidden">
         </section>
       </div>

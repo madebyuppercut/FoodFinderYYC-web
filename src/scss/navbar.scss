@@ -12,6 +12,7 @@ nav[role="navigation"] {
   -ms-flex-direction: row;
   flex-direction: row;
   position: relative;
+  z-index: 1000;
 
   h1 {
     color: $app-primary;

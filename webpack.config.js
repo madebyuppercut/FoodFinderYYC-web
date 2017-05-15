@@ -44,6 +44,7 @@ const appConfig = new webpack.DefinePlugin({
   },
   GOOGLE: {
     MAP: JSON.stringify(config.google.map),
+    ZOOM: JSON.stringify(config.google.zoom),
     GA: JSON.stringify(config.google.ga)
   }
 });
