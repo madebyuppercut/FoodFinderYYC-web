@@ -31,7 +31,7 @@ export default class Search extends React.Component {
           dinner: false,
           hamper: false
         },
-        noId: true
+        noId: false
       }
     };
   }
@@ -147,7 +147,7 @@ export default class Search extends React.Component {
               </ul>
             </dd>
             <dd className="no-id h-s-only">
-              <input type="checkbox" id="no-id" name="no-id" defaultChecked onChange={this.onChangeId.bind(this)}/>
+              <input type="checkbox" id="no-id" name="no-id" onChange={this.onChangeId.bind(this)}/>
               <label htmlFor="no-id">I have no ID or referrals</label>
             </dd>
           </dl>
