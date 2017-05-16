@@ -98,8 +98,11 @@ export default class Map extends React.Component {
     }
 
     return (google) => {
+      let container = document.getElementById(id);
       let markers = [];
       let markerCluster;
+      let map;
+
       const mapOptions = {
         center: center,
         zoom: zoom,
@@ -114,7 +117,8 @@ export default class Map extends React.Component {
         anchor: new google.maps.Point(15, 40)
       };
 
-      const map = new google.maps.Map(document.getElementById(id), mapOptions);
+      container.style.height = (document.documentElement.clientHeight - container.offsetTop) + 'px';
+      map = new google.maps.Map(container, mapOptions);
 
       locations.forEach((location) => {
         let obj = location.object;

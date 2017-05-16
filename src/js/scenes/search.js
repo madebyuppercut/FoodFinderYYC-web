@@ -2,6 +2,7 @@
 
 // libs
 import React from 'react';
+import ReactGA from 'react-ga';
 import Parse from 'parse';
 
 // assets
@@ -13,6 +14,8 @@ import Map from '../components/map';
 const config = {
   PARSE: PARSE
 };
+
+ReactGA.initialize(GOOGLE.GA, {debug: process.env !== 'production'});
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -32,6 +35,14 @@ export default class Search extends React.Component {
       }
     };
   }
+
+  trackEvent(label) {
+    ReactGA.event({
+      category: 'web',
+      action: 'click',
+      label: label
+    });
+  };
 
   componentDidMount() {
     Parse.initialize(config.PARSE.APP_ID, config.PARSE.JS_KEY);
@@ -63,6 +74,7 @@ export default class Search extends React.Component {
     let state = this.state.params;
 
     state.day = parseInt(e.target.value);
+    this.trackEvent('search-day-' + e.target.value);
     this.setState(state);
     this.search(state);
   }
@@ -71,6 +83,7 @@ export default class Search extends React.Component {
     let state = this.state.params;
 
     state.meals[e.target.value] = e.target.checked;
+    this.trackEvent('search-meal-' + e.target.value);
     this.setState(state);
     this.search(state);
   }
@@ -79,12 +92,14 @@ export default class Search extends React.Component {
     let state = this.state.params;
 
     state.noId = e.target.checked;
+    this.trackEvent('search-no-referral-or-id');
     this.setState(state);
     this.search(state);
   }
 
   onSubmit(e) {
     e.preventDefault();
+    this.trackEvent('manual-submit');
     this.search(this.state.params);
   }
 
