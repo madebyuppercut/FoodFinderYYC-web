@@ -15,12 +15,6 @@ const SubscribeForm = () => {
             <input type="email" name="EMAIL" className="required email" id="mce-EMAIL" placeholder="Email Address" />
           </div>
           <div className="mc-field-group">
-            <input type="text" name="FNAME" className="" id="mce-FNAME" placeholder="First Name" />
-          </div>
-          <div className="mc-field-group">
-            <input type="text" name="LNAME" className="" id="mce-LNAME" placeholder="Last Name" />
-          </div>
-          <div className="mc-field-group">
             <div className="select-wrapper">
               <select name="group[1783]" className="REQ_CSS" id="mce-group[1783]">
                 <option value="">I am a</option>
