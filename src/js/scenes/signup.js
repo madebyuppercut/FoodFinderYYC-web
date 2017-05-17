@@ -25,7 +25,7 @@ export default class SignUp extends React.Component {
           <div className="g-r center">
             <div className="g-c-s-4-5 g-c-m-9-12 g-c-l-6-12 t-center">
               <p>
-                Welcome! This service will be live on July 1st. Leave your email address to get a reminder then.
+                Welcome! This service will be live on July 1st. To get a reminder, please leave your email address.
               </p>
               <SubscribeForm/>
             </div>
