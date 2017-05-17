@@ -1,19 +1,56 @@
 'use strict';
 
-// libraries
-import React, { Component } from 'react';
+// libs
+import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleMapsLoader from 'google-maps';
-import MarkerClusterer from 'gmaps-marker-clusterer';
+import MarkerClusterer from 'marker-clusterer-plus-es2015';
+import {fitBounds} from 'google-map-react/utils';
 
 // assets
-import '../../scss/map.scss'
+import '../../scss/map.scss';
+import '../../img/cluster.svg';
+import '../../img/pin-on.svg';
+import '../../img/pin-off.svg';
 
-const Marker = ({text}) => {
-  return <div>{text}</div>;
+// components
+import InfoPanel from './infopanel';
+
+const config = {
+  GOOGLE_MAP: GOOGLE.MAP,
+  ZOOM: parseInt(GOOGLE.ZOOM)
 };
 
-const getCornersCenter = (locations) => {
+const clusterSytles = [
+  {
+    anchorText: [-3, 0],
+    height: 60,
+    width: 46,
+    url: 'img/cluster.svg'
+  }, {
+    anchorText: [-3, 0],
+    height: 60,
+    width: 46,
+    url: 'img/cluster.svg'
+  }, {
+    anchorText: [-3, 0],
+    height: 60,
+    width: 46,
+    url: 'img/cluster.svg'
+  }, {
+    anchorText: [-3, 0],
+    height: 60,
+    width: 46,
+    url: 'img/cluster.svg'
+  }, {
+    anchorText: [-3, 0],
+    height: 60,
+    width: 46,
+    url: 'img/cluster.svg'
+  }
+];
+
+const getCorners = (locations) => {
   let minLat = null;
   let minLng = null;
   let maxLat = null;
@@ -22,24 +59,20 @@ const getCornersCenter = (locations) => {
   locations.forEach((location) => {
     let geo = location.object.geolocation;
 
-    if (minLat === null || geo.latitude < minLat) { minLat = geo.latitude; }
-    if (maxLat === null || geo.latitude > maxLat) { maxLat = geo.latitude; }
-    if (minLng === null || geo.longitude < minLng) { minLng = geo.longitude; }
-    if (maxLng === null || geo.longitude > maxLng) { maxLng = geo.longitude; }
+    try {
+      if (minLat === null || geo.latitude < minLat) { minLat = geo.latitude; }
+      if (maxLat === null || geo.latitude > maxLat) { maxLat = geo.latitude; }
+      if (minLng === null || geo.longitude < minLng) { minLng = geo.longitude; }
+      if (maxLng === null || geo.longitude > maxLng) { maxLng = geo.longitude; }
+    } catch(e) {
+      if (process.env !== 'production') { console.log('Location missing geolocation: ', location); }
+    }
   });
 
-  console.log(maxLat, minLat, locations.length);
-
-  return {
-    ne: {lat: maxLat, lng: maxLng},
-    sw: {lat: minLat, lng: minLng},
-    center: {
-      lat: (maxLat + minLat) / 2,
-      lng: (maxLng + minLng) / 2
-    }};
+  return {ne: {lat: maxLat, lng: maxLng}, sw: {lat: minLat, lng: minLng}};
 };
 
-export default class Map extends Component {
+export default class Map extends React.Component {
   static get propTypes() {
     return {
       locations: PropTypes.arrayOf(PropTypes.shape({
@@ -50,36 +83,79 @@ export default class Map extends Component {
     };
   }
 
+  mapLoader(id, locations) {
+    let center = {lat: 0, lng: 0};
+    let zoom = config.ZOOM;
+
+    function onMarkerClick(e) {
+      console.log(this.mapLoader);
+    }
+
+    if (locations.length > 0) {
+      let fb = fitBounds(getCorners(locations), {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight});
+      center = fb.center;
+      zoom = fb.zoom;
+    }
+
+    return (google) => {
+      let container = document.getElementById(id);
+      let markers = [];
+      let markerCluster;
+      let map;
+
+      const mapOptions = {
+        center: center,
+        zoom: zoom,
+        minZoom: 10
+      };
+      const clusterOptions = {
+        styles: clusterSytles
+      };
+      const markerStyle = {
+        url: 'img/pin-off.svg',
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(15, 40)
+      };
+
+      container.style.height = (document.documentElement.clientHeight - container.offsetTop) + 'px';
+      map = new google.maps.Map(container, mapOptions);
+
+      locations.forEach((location) => {
+        let obj = location.object;
+
+        try {
+          let marker = new google.maps.Marker({
+            position: {lat: obj.geolocation.latitude, lng: obj.geolocation.longitude},
+            icon: markerStyle
+          });
+
+          marker.addListener('click', onMarkerClick);
+          markers.push(marker);
+        } catch (e) {
+          if (process.env !== 'production') { console.log('Location missing geolocation: ', location); }
+        }
+      });
+
+      markerCluster = new MarkerClusterer(map, markers, clusterOptions);
+    };
+  };
+
   render() {
     let locations = this.props.locations;
-    let center = getCornersCenter(locations).center;
-    let markers = locations.map((location) => {
-      let obj = location.object;
-
+    let infoPanels = locations.map(location => {
       return (
-        <Marker
-          lat={obj.geolocation.latitude}
-          lng={obj.geolocation.longitude}
-          text={obj.name}
-          key={obj.objectId}
-        />
+        <InfoPanel location={location} key={location.object.objectId} />
       );
     });
 
-    console.log(center);
-
-    GoogleMapsLoader.KEY = GOOGLE.MAP;
-    GoogleMapsLoader.load(function(google) {
-      new google.maps.Map(document.getElementById('map-container'),
-        {
-          center: center,
-          zoom: 11
-        });
-    });
+    GoogleMapsLoader.KEY = config.GOOGLE_MAP;
+    GoogleMapsLoader.load(this.mapLoader('map-view', locations));
 
     return (
-      <div id="map-container" className="map">
-      </div>
+      <section className="map-container">
+        <div id="map-view" className="map"></div>
+        {infoPanels}
+      </section>
     );
   }
-}
+};
