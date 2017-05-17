@@ -85,7 +85,7 @@ module.exports = function(env) {
         test: /\.(sass|scss)$/,
         use: scssConfig.extract(['css-loader', 'sass-loader'])
       }, {
-        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
       }, {
         test: /\.(jpg|jpeg|gif|png|svg)$/,

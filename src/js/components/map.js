@@ -10,9 +10,9 @@ import MarkerClusterer from 'react-google-maps/lib/addons/MarkerClusterer';
 
 // assets
 import '../../scss/map.scss';
-import '../../img/cluster.svg';
-import '../../img/pin-on.svg';
-import '../../img/pin-off.svg';
+import PinCluster from '../../img/cluster.svg';
+import PinOn from '../../img/pin-on.svg';
+import PinOff from '../../img/pin-off.svg';
 
 // components
 import InfoPanel from './infopanel';
@@ -23,38 +23,40 @@ const config = {
   CENTER: {lat: 51.0132493, lng: -114.2142373}
 };
 
+console.log(PinOn);
+
 const clusterSytles = [
   {
     anchorText: [-3, 0],
     height: 60,
     width: 46,
-    url: 'img/cluster.svg'
+    url: PinCluster
   }, {
     anchorText: [-3, 0],
     height: 60,
     width: 46,
-    url: 'img/cluster.svg'
+    url: PinCluster
   }, {
     anchorText: [-3, 0],
     height: 60,
     width: 46,
-    url: 'img/cluster.svg'
+    url: PinCluster
   }, {
     anchorText: [-3, 0],
     height: 60,
     width: 46,
-    url: 'img/cluster.svg'
+    url: PinCluster
   }, {
     anchorText: [-3, 0],
     height: 60,
     width: 46,
-    url: 'img/cluster.svg'
+    url: PinCluster
   }
 ];
 
 const noop = () => {};
 const markerStyle = {
-  url: 'img/pin-off.svg',
+  url: PinOff,
   origin: {x: 0, y: 0},
   anchor: {x: 15, y: 40}
 };
@@ -65,42 +67,37 @@ const mapOptions = {
 
 const AsyncGoogleMap = withScriptjs(
   withGoogleMap(
-    props => {
-      const mapOptions = {
-
-      }
-      return (
-        <GoogleMap
-          ref={props.onMapLoad}
-          defaultZoom={props.defaultZoom}
-          defaultCenter={props.defaultCenter}
-          center={props.center}
-          zoom={props.zoom}
-          onClick={props.onMapClick}
-          onCenterChanged={props.onCenterChanged}
-          options={props.mapOptions}
+    props => (
+      <GoogleMap
+        ref={props.onMapLoad}
+        defaultZoom={props.defaultZoom}
+        defaultCenter={props.defaultCenter}
+        center={props.center}
+        zoom={props.zoom}
+        onClick={props.onMapClick}
+        onCenterChanged={props.onCenterChanged}
+        options={props.mapOptions}
+      >
+        <MarkerClusterer
+          averageCenter
+          enableRetinaIcons
+          gridSize={60}
+          styles={clusterSytles}
         >
-          <MarkerClusterer
-            averageCenter
-            enableRetinaIcons
-            gridSize={60}
-            styles={clusterSytles}
-          >
-            {props.markers.map(marker => {
-              const onClick = () => props.onMarkerClick(marker);
-              return (
-                <Marker
-                  {...marker}
-                  key={marker.id}
-                  onClick={onClick}
-                />
-              )
-            })}
-          </MarkerClusterer>
+          {props.markers.map(marker => {
+            const onClick = () => props.onMarkerClick(marker);
+            return (
+              <Marker
+                {...marker}
+                key={marker.id}
+                onClick={onClick}
+              />
+            )
+          })}
+        </MarkerClusterer>
 
-        </GoogleMap>
-      );
-    }
+      </GoogleMap>
+    )
   )
 );
 
@@ -200,9 +197,13 @@ export default class Map extends React.Component {
       let obj = location.object;
 
       try {
-        let marker = {
+        let thisMarkerStyle = Object.assign({}, markerStyle);
+        let marker;
+
+        thisMarkerStyle.url = selectedLocation && selectedLocation.object.objectId === obj.objectId ? PinOn : PinOff;
+        marker = {
           position: {lat: obj.geolocation.latitude, lng: obj.geolocation.longitude},
-          icon: markerStyle,
+          icon: thisMarkerStyle,
           id: obj.objectId
         };
 
