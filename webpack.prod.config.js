@@ -50,6 +50,7 @@ const appConfig = new webpack.DefinePlugin({
   },
   GOOGLE: {
     MAP: JSON.stringify(process.env.GOOGLE_MAP),
+    ZOOM: JSON.stringify(process.env.GOOGLE_ZOOM),
     GA: JSON.stringify(process.env.GOOGLE_GA)
   }
 });
