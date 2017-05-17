@@ -56,8 +56,8 @@ export default class Search extends React.Component {
 
   search(params) {
     let searchParams = {};
-    let dateTimeNow = new Date();
-    let date = new Date((dateTimeNow).getTime() + (24 * 60 * 60 * params.day * 1000));
+    let dateTimeNow = new Date((new Date()).getTime() + (15 * 60 * 1000));             // Set 15min into the future to detect open now
+    let date = new Date((new Date()).getTime() + (24 * 60 * 60 * params.day * 1000));  // Set date to corresponding day
 
     searchParams.date = date.toString();
     searchParams.dateTimeNow = dateTimeNow.toString();

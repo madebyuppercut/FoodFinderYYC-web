@@ -32,6 +32,16 @@ const mealImages = {
   }
 };
 
+function mapClientDetect() {
+  if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+    return 'https://maps.apple.com/?q=';
+  } else if( /Android/i.test(navigator.userAgent) ) {
+    return 'https://maps.google.com/?q=';
+  } else {
+    return 'https://maps.google.com/?daddr=';
+  }
+}
+
 function convertTimeToAMPM(hour, min) {
   if (min === 0) { min = '00'; }
 
@@ -68,7 +78,7 @@ export default class InfoPanel extends Component {
 
     if (info.address) {
       let fullAddress = info.address + ' ' + info.city + ' ' + info.province;
-      let gmapUrl = "https://maps.google.com/?daddr=";
+      let gmapUrl = mapClientDetect();
 
       fullAddress = fullAddress.replace(spaceRegex, '+');
 
@@ -128,7 +138,7 @@ export default class InfoPanel extends Component {
         <i className="fa fa-clock-o"></i>
         <p>
           {shifts}
-          {now.isAvailable ? <span className="now">Opens now</span> : null}
+          {now.isAvailable ? <span className="now">Opens Now</span> : null}
         </p>
       </div>
     ) : null;
