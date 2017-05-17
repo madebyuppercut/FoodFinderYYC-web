@@ -39,6 +39,10 @@ p.tag {
   color: $app-background;
 }
 
+a {
+  color: $app-primary;
+}
+
 input[type="text"],
 input[type="email"] {
   border: 1px solid #ccc;

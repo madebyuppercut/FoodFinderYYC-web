@@ -212,10 +212,14 @@ export default class Map extends React.Component {
       }
     });
 
-    if (locations.length > 0) {
+    if (locations.length > 1) {
       let fb = fitBounds(getCorners(locations), {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight});
       center = this.state.center ? this.state.center : fb.center;
       zoom = fb.zoom;
+    } else if (locations.length === 1) {
+      if (locations[0].object.geolocation) {
+        center = {lat: locations[0].object.geolocation.latitude, lng: locations[0].object.geolocation.longitude};
+      }
     } else {
       center = config.CENTER;
     }
