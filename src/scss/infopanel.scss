@@ -1,0 +1,44 @@
+@import "settings";
+
+.info-panel {
+  background: $app-background;
+  height: 100%;
+  left: -80vw;
+  padding: 1rem 0.5rem;
+  position: absolute;
+  top: 0;
+  width: 80vw;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  z-index: 500;
+
+  &.active {
+    left: 0;
+  }
+
+  .fa-close {
+    color: #666;
+    font-size: 2rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .info-panel {
+    padding: 2rem 1rem;
+    left: 40vw;
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .info-panel {
+    left: 30vw;
+    width: 30vw;
+  }
+}

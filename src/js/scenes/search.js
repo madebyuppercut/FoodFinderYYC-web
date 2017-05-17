@@ -31,7 +31,9 @@ export default class Search extends React.Component {
           dinner: false,
           hamper: false
         },
-        noId: false
+        noId: false,
+        geolocation: null,
+        distance: null
       }
     };
   }
@@ -61,6 +63,11 @@ export default class Search extends React.Component {
     searchParams.dateTimeNow = dateTimeNow.toString();
     searchParams.noIdNorReferral = params.noId;
     searchParams.meals = Object.keys(params.meals).filter(key => { return params.meals[key]; });
+
+    if (params.geolocation && params.distance) {
+      searchParams.geolocation = params.geolocation;
+      searchParams.distance = params.distance;
+    }
 
     Parse.Cloud.run('search', searchParams)
       .then(
@@ -152,7 +159,7 @@ export default class Search extends React.Component {
             </dd>
           </dl>
         </form>
-        <Map locations={locations}/>
+        <Map locations={locations} />
         <section className="list hidden">
         </section>
       </div>

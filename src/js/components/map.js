@@ -63,10 +63,12 @@ const mapOptions = {
   streetViewControl: false
 }
 
-
 const AsyncGoogleMap = withScriptjs(
   withGoogleMap(
     props => {
+      const mapOptions = {
+
+      }
       return (
         <GoogleMap
           ref={props.onMapLoad}
@@ -142,9 +144,9 @@ export default class Map extends React.Component {
   constructor() {
     super();
     this.state = {
-      map: null,
-      panningDebounce: null
-    }
+      selectedLocation: null,
+      center: null
+    };
   }
 
   static get propTypes() {
@@ -159,26 +161,40 @@ export default class Map extends React.Component {
 
   /**
    * A callback to dynamically calculate the container height to fill the screen
-   * @param mapReact
+   * @param map
    */
   onMapLoad(map) {
     const mapDOM = map.getDiv();
-    mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.offsetTop) + 'px';
+    mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.getBoundingClientRect().top) + 'px';
+
+    window._ffyycMap = map;
   }
 
-  onMarkerClick(something) {
-    console.log(something);
+  onMarkerClick(marker) {
+    let selectedLocation = this.props.locations.filter(location => {
+      return location.object.objectId === marker.id;
+    });
+
+    if (selectedLocation.length > 0) {
+      selectedLocation = selectedLocation[0];
+      this.setState({
+        selectedLocation: selectedLocation,
+        center: {lat: selectedLocation.object.geolocation.latitude, lng: selectedLocation.object.geolocation.longitude}
+      });
+    }
   }
 
-  onCenterChanged(something) {
-    console.log('center changed: ', this);
+  onCloseInfo(e) {
+    this.setState({selectedLocation: null});
   }
 
   render() {
     let locations = this.props.locations;
+    let selectedLocation = this.state.selectedLocation;
     let markers = [];
-    let center = config.CENTER;
+    let center = this.state.center;
     let zoom = config.ZOOM;
+    let infoWindow = null;
 
     locations.forEach((location) => {
       let obj = location.object;
@@ -198,25 +214,34 @@ export default class Map extends React.Component {
 
     if (locations.length > 0) {
       let fb = fitBounds(getCorners(locations), {width: document.documentElement.clientWidth, height: document.documentElement.clientHeight});
-      center = fb.center;
+      center = this.state.center ? this.state.center : fb.center;
       zoom = fb.zoom;
+    } else {
+      center = config.CENTER;
+    }
+
+    if (selectedLocation) {
+      infoWindow = <InfoPanel location={selectedLocation} onDismiss={this.onCloseInfo.bind(this)} />;
+      center = this.state.center;
     }
 
     return (
-      <AsyncGoogleMap
-        googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&key=" + config.GOOGLE_MAP}
-        loadingElement={<div/>}
-        containerElement={<section className="map-container" />}
-        mapElement={<div className="map" />}
-        center={center}
-        zoom={zoom}
-        markers={markers}
-        onClick={this.onClick}
-        onMapLoad={this.onMapLoad}
-        onMapClick={noop}
-        onMarkerClick={this.onMarkerClick}
-        onCenterChanged={noop}
-      />
+      <section className="map-container">
+        <AsyncGoogleMap
+          googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&key=" + config.GOOGLE_MAP}
+          loadingElement={<div/>}
+          containerElement={<div/>}
+          mapElement={<div className="map" />}
+          center={center}
+          zoom={zoom}
+          markers={markers}
+          onClick={this.onClick}
+          onMapLoad={this.onMapLoad}
+          onMapClick={noop}
+          onMarkerClick={this.onMarkerClick.bind(this)}
+        />
+        {infoWindow}
+      </section>
     );
   }
 };
