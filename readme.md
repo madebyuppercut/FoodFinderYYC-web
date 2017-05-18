@@ -14,7 +14,27 @@ Installation
 
 1. Check out this repository
 1. Run `npm install`. This should resolve all package dependencies
+1. Set up a JSON file `config.json` on project root. This will be read by Webpack
 1. Run `npm start`
+
+Sample config.json
+---
+
+```
+{
+  "parse": {
+    "app_id": "XXXXXXXXXX",
+    "js_key": "XXXXXXXXXX",
+    "url": "http://localhost:8081/parse"
+  },
+  "google": {
+    "map": "XXXXXXXXXX",
+    "zoom": "11",
+    "ga": "UA-XXXXXXXX-X"
+  }
+}
+
+```
 
 Development
 ---

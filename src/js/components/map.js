@@ -16,11 +16,12 @@ import PinOff from '../../img/pin-off.svg';
 
 // components
 import InfoPanel from './infopanel';
+import Modal from './modal';
 
 const config = {
   GOOGLE_MAP: GOOGLE.MAP,
   ZOOM: parseInt(GOOGLE.ZOOM),
-  CENTER: {lat: 51.0132493, lng: -114.2142373}
+  CENTER: {lat: 51.0486, lng: -114.0708}
 };
 
 console.log(PinOn);
@@ -142,7 +143,8 @@ export default class Map extends React.Component {
     super();
     this.state = {
       selectedLocation: null,
-      center: null
+      center: null,
+      message: {code: 0, text: null}
     };
   }
 
@@ -162,9 +164,9 @@ export default class Map extends React.Component {
    */
   onMapLoad(map) {
     const mapDOM = map.getDiv();
-    mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.getBoundingClientRect().top) + 'px';
 
-    window._ffyycMap = map;
+    mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.getBoundingClientRect().top) + 'px';
+    window._ffyycMap = {map: map, control: null};
   }
 
   onMarkerClick(marker) {
@@ -181,17 +183,85 @@ export default class Map extends React.Component {
     }
   }
 
-  onCloseInfo(e) {
+  showMessage(code, text) {
+    this.setState({message: {code: code, text: text}});
+  }
+
+  clearMessage() {
+    this.setState({message: {code: 0, text: null}});
+  }
+
+  dismissMessage(e) {
+    this.clearMessage();
+  }
+
+  onLocationClick() {
+    let context = this;
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          context.setState({center: {lat: position.coords.latitude, lng: position.coords.longitude}});
+        }, function(err) {
+          context.showMessage(1, 'You have declined permission to use location. You must reset this in your browser.');
+        }
+      );
+    } else {
+      context.showMessage(1, 'Your browser does not support location sensor.');
+    }
+  }
+
+  onCloseInfo() {
     this.setState({selectedLocation: null});
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.props.locations.length > 0 && nextProps.locations.length === 0 && this.state.message.code === 0) {
+      // only show message when found locations count changed to 0
+      this.showMessage(2, 'No locations found, broaden your search settings or select a different day.');
+    } else if (nextProps.locations.length > 0 && this.state.message.code === 2) {
+      // only clear message if it's for search
+      this.clearMessage();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (window._ffyycMap && !window._ffyycMap.control) {
+      // Code below to to add a custom control for getting current location
+      // Only way to obtain the Google Maps instance after it's initialized via react-google-maps component
+      const mapInstance = window._ffyycMap.map.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+      // Create a div to hold the control.
+      const controlDiv = document.createElement('div');
+      const controlUI = document.createElement('div');
+      const controlText = document.createElement('div');
+
+      // Set CSS for the control border
+      controlUI.className = 'map-control';
+      controlUI.title = 'Click to use location';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior
+      controlText.innerHTML = '<i class="fa fa-location-arrow"></i>';
+      controlUI.appendChild(controlText);
+
+      controlDiv.addEventListener('click', this.onLocationClick.bind(this));
+
+      mapInstance.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+
+      window._ffyycMap.control = controlDiv;
+    }
   }
 
   render() {
     let locations = this.props.locations;
     let selectedLocation = this.state.selectedLocation;
-    let markers = [];
+    let message = this.state.message.text;
     let center = this.state.center;
     let zoom = config.ZOOM;
+    let markers = [];
     let infoWindow = null;
+    let messageWindow = null;
 
     locations.forEach((location) => {
       let obj = location.object;
@@ -230,6 +300,10 @@ export default class Map extends React.Component {
       center = this.state.center;
     }
 
+    if (message) {
+      messageWindow = <Modal onClose={this.dismissMessage.bind(this)} message={message}/>;
+    }
+
     return (
       <section className="map-container">
         <AsyncGoogleMap
@@ -246,6 +320,7 @@ export default class Map extends React.Component {
           onMarkerClick={this.onMarkerClick.bind(this)}
         />
         {infoWindow}
+        {messageWindow}
       </section>
     );
   }

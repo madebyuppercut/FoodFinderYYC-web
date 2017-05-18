@@ -254,6 +254,13 @@ dl, dd {
     @include modal(100%, 100%);
     background-color: $modal-background-color;
     padding: $modal-padding;
+
+    &.small {
+      @include modal(60%, 60%);
+      @include border($modal-corner-radius / 2);
+      padding: $modal-padding / 2;
+    }
+
   }
 }
 
@@ -303,6 +310,10 @@ dl, dd {
   .w-m .m {
     @include modal(80%, auto);
     @include border($modal-corner-radius);
+
+    &.small {
+      @include modal(40%, auto);
+    }
   }
 
   [class*="h-m"], .v-s-only {
@@ -347,7 +358,7 @@ dl, dd {
   }
 
   .w-m .m {
-    @include modal(40%, auto);
+    @include modal(20%, auto);
   }
 
   [class*="h-l"], .v-s-only, .v-m-only {
