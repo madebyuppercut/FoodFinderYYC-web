@@ -1,6 +1,7 @@
 @import "settings";
 
 .m {
+  font-family: $font-family-primary;
   font-size: $base-font-size;
 
   > .fa-close {
