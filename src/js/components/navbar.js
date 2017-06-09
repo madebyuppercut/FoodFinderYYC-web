@@ -31,7 +31,7 @@ export default class Navbar extends React.Component {
             <NavLink to="/"><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only"/></NavLink>
           </div>
           <div className="menu-search g-c-s-6-8 g-c-m-8-12 g-c-l-10-12">
-            <div className="search p-lr-1">
+            <div className="search p-lr-1 hidden">
               <i className="fa fa-search m-r-1"></i>
               <input type="text" placeholder="Search" />
             </div>
