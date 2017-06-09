@@ -39,11 +39,14 @@ nav[role="navigation"] {
       min-width: 40%;
 
       input[type="text"] {
+        padding-left: 3rem;
         width: 80%;
       }
 
       .fa {
         font-size: 1.5rem;
+        position: absolute;
+        transform: translate(1rem, 50%);
       }
     }
   }
@@ -83,7 +86,7 @@ nav[role="navigation"] {
         cursor: pointer;
         position: absolute;
         right: 1.25rem;
-        top: 1.25rem;
+        top: 1.5rem;
       }
 
       ul {
@@ -113,6 +116,13 @@ nav[role="navigation"] {
     .menu-search {
       .search {
         display: inline-block;
+      }
+    }
+
+    .menu {
+      .menu-side {
+        right: -21rem;
+        width: 21rem;
       }
     }
   }

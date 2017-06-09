@@ -30,8 +30,8 @@
   }
 
   section {
-    border-bottom: 1px solid #666;
-    padding: 1rem 0.5rem;
+    border-bottom: 1px solid $app-lightgrey;
+    padding: 1rem;
 
     &:last-child {
       border-bottom: none;
@@ -125,7 +125,7 @@
     width: 40vw;
 
     section {
-      padding: 1.5rem 0.75rem;
+      padding: 1.5rem 1rem;
     }
 
     ul.meals {

@@ -261,6 +261,9 @@ dl, dd {
       padding: $modal-padding / 2;
     }
 
+    &[data-style="tight"] {
+      height: auto;
+    }
   }
 }
 

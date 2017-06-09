@@ -301,7 +301,7 @@ export default class Map extends React.Component {
     }
 
     if (message) {
-      messageWindow = <Modal onClose={this.dismissMessage.bind(this)} message={message}/>;
+      messageWindow = <Modal onClose={this.dismissMessage.bind(this)} message={message} style="tight"/>;
     }
 
     return (

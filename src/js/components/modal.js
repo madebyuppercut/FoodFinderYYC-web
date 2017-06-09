@@ -5,10 +5,10 @@ import '../../scss/modal.scss';
 
 const Modal = (props) => (
   <div className="w-m show">
-    <div className="m small relative">
+    <div className="m small relative" data-style={props.style}>
       <i className="fa fa-close" onClick={props.onClose}></i>
       <div className="relative">
-        {props.message}
+        <p>{props.message}</p>
         <p className="t-center">
           <a className="b" onClick={props.onClose}>Okay</a>
         </p>
