@@ -49,11 +49,11 @@ function convertTimeToAMPM(hour, min) {
     if (min === '00') {
       return 'noon';
     } else {
-      return hour + ':' + min + 'PM';
+      return hour + ':' + min + ' PM';
     }
   }
-  if (hour > 12) { return (hour - 12).toString() + ':' + min + 'PM'; }
-  if (hour < 12) { return hour.toString() + ':' + min + 'AM'; }
+  if (hour > 12) { return (hour - 12).toString() + ':' + min + ' PM'; }
+  if (hour < 12) { return hour.toString() + ':' + min + ' AM'; }
 }
 
 export default class InfoPanel extends Component {
@@ -138,7 +138,7 @@ export default class InfoPanel extends Component {
         <i className="fa fa-clock-o"></i>
         <p>
           {shifts}
-          {now.isAvailable ? <span className="now">Opens Now</span> : null}
+          {now.isAvailable ? <span className="now">Open Now</span> : null}
         </p>
       </div>
     ) : null;

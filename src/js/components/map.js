@@ -163,10 +163,14 @@ export default class Map extends React.Component {
    * @param map
    */
   onMapLoad(map) {
-    const mapDOM = map.getDiv();
+    try {
+      const mapDOM = map.getDiv();
 
-    mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.getBoundingClientRect().top) + 'px';
-    window._ffyycMap = {map: map, control: null};
+      mapDOM.style.height = (document.documentElement.clientHeight - mapDOM.getBoundingClientRect().top) + 'px';
+      window._ffyycMap = {map: map, control: null};
+    } catch (err) {
+      console.log('no map');
+    }
   }
 
   onMarkerClick(marker) {
