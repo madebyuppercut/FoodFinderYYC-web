@@ -21,6 +21,7 @@ $numberOfMarginPaddingClasses: 6;
 $button-horizontal-padding: 2rem;
 $button-vertical-padding: 1rem;
 
+$breakpoint-large: 90em;
 $breakpoint-small: 40em;
 $breakpoint-medium: 64em;
 $full-screen-container-background-color: white;
@@ -89,6 +90,10 @@ p {
 
 dl, dd {
   margin: 0;
+}
+
+.strong {
+  font-weight: bold;
 }
 
 // Global Helpers
@@ -205,10 +210,10 @@ dl, dd {
   .g-c-12-12, .g-c-s-12-12 { @include flex-grid(100%); }
 
   .g-c-1-8, .g-c-s-1-8 { @include flex-grid(12.5%); }
-  .g-c-2-8, .g-c-s-1-8 { @include flex-grid(25%); }
-  .g-c-3-8, .g-c-s-2-8 { @include flex-grid(37.5%); }
-  .g-c-4-8, .g-c-s-3-8 { @include flex-grid(50%); }
-  .g-c-5-8, .g-c-s-4-8 { @include flex-grid(62.5%); }
+  .g-c-2-8, .g-c-s-2-8 { @include flex-grid(25%); }
+  .g-c-3-8, .g-c-s-3-8 { @include flex-grid(37.5%); }
+  .g-c-4-8, .g-c-s-4-8 { @include flex-grid(50%); }
+  .g-c-5-8, .g-c-s-5-8 { @include flex-grid(62.5%); }
   .g-c-6-8, .g-c-s-6-8 { @include flex-grid(75%); }
   .g-c-7-8, .g-c-s-7-8 { @include flex-grid(87.5%); }
   .g-c-8-8, .g-c-s-8-8 { @include flex-grid(100%); }
@@ -254,6 +259,16 @@ dl, dd {
     @include modal(100%, 100%);
     background-color: $modal-background-color;
     padding: $modal-padding;
+
+    &.small {
+      @include modal(60%, 60%);
+      @include border($modal-corner-radius / 2);
+      padding: $modal-padding / 2;
+    }
+
+    &[data-style="tight"] {
+      height: auto;
+    }
   }
 }
 
@@ -303,6 +318,10 @@ dl, dd {
   .w-m .m {
     @include modal(80%, auto);
     @include border($modal-corner-radius);
+
+    &.small {
+      @include modal(40%, auto);
+    }
   }
 
   [class*="h-m"], .v-s-only {
@@ -314,7 +333,7 @@ dl, dd {
   }
 }
 
-/* Large and beyond */
+/* Large */
 @media screen and (min-width: $breakpoint-medium) {
   .g-r {
     .g-c-l-1-5 { @include flex-grid(20%); }
@@ -356,5 +375,12 @@ dl, dd {
 
   [class*="v-l"], .h-s-only, .h-m-only {
     display: block;
+  }
+}
+
+/* Extra-large and beyond */
+@media screen and (min-width: $breakpoint-large) {
+  .w-m .m {
+    @include modal(30%, auto);
   }
 }

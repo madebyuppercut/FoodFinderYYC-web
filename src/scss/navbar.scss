@@ -12,6 +12,7 @@ nav[role="navigation"] {
   -ms-flex-direction: row;
   flex-direction: row;
   position: relative;
+  z-index: 10000;
 
   h1 {
     color: $app-primary;
@@ -32,9 +33,27 @@ nav[role="navigation"] {
       display: inline-block;
       vertical-align: middle;
     }
+
+    .search {
+      display: none;
+      min-width: 40%;
+
+      input[type="text"] {
+        padding-left: 3rem;
+        width: 80%;
+      }
+
+      .fa {
+        font-size: 1.5rem;
+        position: absolute;
+        transform: translate(1rem, 50%);
+      }
+    }
   }
 
   .menu {
+    overflow: hidden;
+
     label {
       font-size: 2rem;
     }
@@ -67,7 +86,7 @@ nav[role="navigation"] {
         cursor: pointer;
         position: absolute;
         right: 1.25rem;
-        top: 1.25rem;
+        top: 1.5rem;
       }
 
       ul {
@@ -87,6 +106,23 @@ nav[role="navigation"] {
             text-transform: uppercase;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 40em) {
+  nav[role="navigation"] {
+    .menu-search {
+      .search {
+        display: inline-block;
+      }
+    }
+
+    .menu {
+      .menu-side {
+        right: -21rem;
+        width: 21rem;
       }
     }
   }

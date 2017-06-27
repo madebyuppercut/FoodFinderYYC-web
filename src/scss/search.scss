@@ -4,11 +4,26 @@
   font-family: $font-family-secondary;
   font-size: 0.5625rem;
 
+  form {
+    background-color: $app-background;
+    width: 100%;
+    z-index: 1000;
+  }
+
+
+  dl {
+    border-top: 1px solid $app-lightgrey;
+  }
+
   dd.day {
     background: $app-secondary;
     border-bottom: 1px solid $app-background;
     display: block;
     text-align: center;
+
+    .select-wrapper {
+      position: relative;
+    }
 
     select {
       background: $app-secondary;
@@ -17,12 +32,25 @@
       font-family: $font-family-secondary;
       font-size: 0.5625rem;
       margin: 0 auto;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       text-align-last: center;
+      text-transform: uppercase;
       -webkit-appearance: none;
+      width: 100%;
 
       &::-ms-expand {
         display: none;
+      }
+    }
+
+    label {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+
+      .fa {
+        color: $app-background;
+        font-size: 0.5625rem;
       }
     }
   }
@@ -50,6 +78,8 @@
       display: block;
       padding: 0.5rem;
       text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     input[type="checkbox"]:checked ~ label {
@@ -62,26 +92,38 @@
   .search {
     font-size: 0.6875rem;
 
+    dl {
+      letter-spacing: 0.5px;
+    }
+
+    dd {
+      display: inline-block !important;
+    }
+
     dd.day {
       border-right: 1px solid $app-background;
       border-bottom: none;
-      display: inline-block;
       padding-left: 1rem;
       text-align: left;
       width: 20%;
 
       select {
         font-size: 0.6875rem;
+        letter-spacing: 0.5px;
         text-align-last: left;
       }
     }
 
     dd.meals {
-      display: inline-block;
-      width: 50%;
+      width: 55%;
 
       ul {
       }
+    }
+
+    dd.no-id {
+      padding-left: 1rem;
+      width: 25%;
     }
   }
 }

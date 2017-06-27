@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const srcPath = __dirname + '/src';
 const distPath = __dirname + '/dist';
@@ -29,6 +30,8 @@ const scssConfig = new ExtractTextWebpackPlugin({
   allChunks: true
 });
 
+const faviconConfig = new FaviconsWebpackPlugin(srcPath + '/ffyyc-favicon.png');
+
 const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
   minimize: true,
   compress: {
@@ -36,9 +39,19 @@ const uglifyConfig = new webpack.optimize.UglifyJsPlugin({
   }
 });
 
-const defineConfig = new webpack.DefinePlugin({
+const appConfig = new webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: JSON.stringify('production')
+  },
+  PARSE: {
+    APP_ID: JSON.stringify(process.env.PARSE_APP_ID),
+    JS_KEY: JSON.stringify(process.env.PARSE_JS_KEY),
+    URL: JSON.stringify(process.env.PARSE_URL)
+  },
+  GOOGLE: {
+    MAP: JSON.stringify(process.env.GOOGLE_MAP),
+    ZOOM: JSON.stringify(process.env.GOOGLE_ZOOM),
+    GA: JSON.stringify(process.env.GOOGLE_GA)
   }
 });
 
@@ -72,7 +85,7 @@ module.exports = function(env) {
         test: /\.(sass|scss)$/,
         use: scssConfig.extract(['css-loader', 'sass-loader'])
       }, {
-        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
       }, {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
@@ -80,9 +93,10 @@ module.exports = function(env) {
       }]
     },
     plugins: [
-      defineConfig,
+      appConfig,
       vendorConfig,
       manifestConfig,
+      faviconConfig,
       htmlWebpackPluginConfig,
       scssConfig,
       uglifyConfig

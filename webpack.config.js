@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const config = require('./config.json');
 
 const srcPath = __dirname + '/src';
 const distPath = __dirname + '/dist';
@@ -29,7 +31,25 @@ const scssConfig = new ExtractTextWebpackPlugin({
   allChunks: true
 });
 
-module.exports = function(env) {
+const faviconConfig = new FaviconsWebpackPlugin(srcPath + '/ffyyc-favicon.png');
+
+const appConfig = new webpack.DefinePlugin({
+  'process.env': {
+    NODE_ENV: JSON.stringify('development')
+  },
+  PARSE: {
+    APP_ID: JSON.stringify(config.parse.app_id),
+    JS_KEY: JSON.stringify(config.parse.js_key),
+    URL: JSON.stringify(config.parse.url)
+  },
+  GOOGLE: {
+    MAP: JSON.stringify(config.google.map),
+    ZOOM: JSON.stringify(config.google.zoom),
+    GA: JSON.stringify(config.google.ga)
+  }
+});
+
+module.exports = function() {
   'use strict';
 
   return {
@@ -59,7 +79,7 @@ module.exports = function(env) {
         test: /\.(sass|scss)$/,
         use: scssConfig.extract(['css-loader', 'sass-loader'])
       }, {
-        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
       }, {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
@@ -69,8 +89,10 @@ module.exports = function(env) {
     devtool: 'source-map',
     devServer: { historyApiFallback: true },
     plugins: [
+      appConfig,
       vendorConfig,
       manifestConfig,
+      faviconConfig,
       htmlWebpackPluginConfig,
       scssConfig
     ]

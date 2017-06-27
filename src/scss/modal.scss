@@ -1,0 +1,17 @@
+@import "settings";
+
+.m {
+  font-family: $font-family-primary;
+  font-size: $base-font-size;
+
+  > .fa-close {
+    font-size: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  &.small p:first-child {
+    margin-top: 1rem;
+  }
+}
