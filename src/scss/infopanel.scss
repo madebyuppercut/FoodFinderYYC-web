@@ -31,7 +31,7 @@
 
   section {
     border-bottom: 1px solid $app-lightgrey;
-    padding: 1rem 1.5rem 1rem 1rem;
+    padding: 1rem 2.5rem 1rem 1rem;
 
     &:last-child {
       border-bottom: none;
@@ -124,7 +124,7 @@
   }
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 40em) and (orientation: portrait) {
   .info-panel {
     left: -100vw;
     width: 40vw;
