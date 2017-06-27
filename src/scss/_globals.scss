@@ -21,6 +21,7 @@ $numberOfMarginPaddingClasses: 6;
 $button-horizontal-padding: 2rem;
 $button-vertical-padding: 1rem;
 
+$breakpoint-large: 90em;
 $breakpoint-small: 40em;
 $breakpoint-medium: 64em;
 $full-screen-container-background-color: white;
@@ -332,7 +333,7 @@ dl, dd {
   }
 }
 
-/* Large and beyond */
+/* Large */
 @media screen and (min-width: $breakpoint-medium) {
   .g-r {
     .g-c-l-1-5 { @include flex-grid(20%); }
@@ -365,7 +366,7 @@ dl, dd {
   }
 
   .w-m .m {
-    @include modal(20%, auto);
+    @include modal(40%, auto);
   }
 
   [class*="h-l"], .v-s-only, .v-m-only {
@@ -374,5 +375,12 @@ dl, dd {
 
   [class*="v-l"], .h-s-only, .h-m-only {
     display: block;
+  }
+}
+
+/* Extra-large and beyond */
+@media screen and (min-width: $breakpoint-large) {
+  .w-m .m {
+    @include modal(30%, auto);
   }
 }

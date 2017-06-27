@@ -15,6 +15,7 @@ import App from './containers/app';
 import GA from './components/ga';
 import SignUp from './scenes/signup';
 import Intro from './scenes/intro';
+import Terms from './scenes/terms';
 import About from './scenes/about';
 import Privacy from './scenes/privacy';
 import Search from './scenes/search';
@@ -57,6 +58,7 @@ export default class Routes extends React.Component {
             <Route path="/search" component={Search} />
             <Route path="/about" component={About} />
             <Route path="/intro" component={Intro} />
+            <Route path="/terms" component={Terms} />
             <Route path="/signup" component={SignUp} />
             <Route path="/privacy" component={Privacy} />
             <Route component={NotFound} />

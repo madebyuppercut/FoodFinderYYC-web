@@ -22,13 +22,10 @@ export default class Intro extends React.Component {
           <div className="g-r center">
             <div className="g-c-12-12 t-center">
               <p>
-                Summer break is supposed to be full of fun, not hunger. Food Finder YYC makes it easy for kids and teens to locate and access food resources.
+                Terms
               </p>
               <p>
                 <Link to="/search" className="b">Get Started <i className="fa fa-chevron-right"></i></Link>
-              </p>
-              <p>
-                By proceeding you are agreeing to our <Link to="/terms">Terms of Service</Link>.
               </p>
             </div>
           </div>
