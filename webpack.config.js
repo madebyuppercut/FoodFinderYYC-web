@@ -34,8 +34,8 @@ const scssConfig = new ExtractTextWebpackPlugin({
 const faviconConfig = new FaviconsWebpackPlugin(srcPath + '/ffyyc-favicon.png');
 
 const appConfig = new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify('development')
+  ENV: {
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   },
   PARSE: {
     APP_ID: JSON.stringify(config.parse.app_id),

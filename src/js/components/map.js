@@ -24,8 +24,6 @@ const config = {
   CENTER: {lat: 51.0486, lng: -114.0708}
 };
 
-console.log(PinOn);
-
 const clusterSytles = [
   {
     anchorText: [-3, 0],
