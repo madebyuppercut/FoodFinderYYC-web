@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 // assets
 import '../../scss/intro.scss';
-import Logo from '../../img/logo2.png';
+import Logo from '../../img/logo2.svg';
 
 export default class Intro extends React.Component {
   render() {
@@ -15,8 +15,8 @@ export default class Intro extends React.Component {
       <div className="w-m show intro">
         <div className="m">
           <div className="g-r center">
-            <div className="g-c-s-12-12 g-c-m-9-12 g-c-l-6-12 t-center">
-              <img src={Logo} />
+            <div className="g-c-s-12-12 g-c-m-6-12 g-c-l-9-12 t-center">
+              <img className="full" src={Logo} />
             </div>
           </div>
           <div className="g-r center">
