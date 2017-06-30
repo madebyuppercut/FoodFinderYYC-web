@@ -77,7 +77,22 @@ module.exports = function() {
         use: scssConfig.extract(['css-loader'])
       }, {
         test: /\.(sass|scss)$/,
-        use: scssConfig.extract(['css-loader', 'sass-loader'])
+        use: scssConfig.extract({
+          fallbackLoader: ['style-loader'],
+          loader: [{
+            loader: 'css-loader',
+            query: {
+              minimize: false,
+              sourceMap: true
+            }
+          }, {
+            loader: 'sass-loader',
+            query: {
+              sourceMap: true,
+              sourceMapContents: true
+            }
+          }]
+        })
       }, {
         test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
