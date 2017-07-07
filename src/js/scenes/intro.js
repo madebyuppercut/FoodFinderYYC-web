@@ -27,6 +27,9 @@ export default class Intro extends React.Component {
               <p>
                 <Link to="/search" className="b">Get Started <i className="fa fa-chevron-right"></i></Link>
               </p>
+              <p>
+                By proceeding you are agreeing to our <Link to="/terms">Terms of Service</Link>.
+              </p>
             </div>
           </div>
         </div>
