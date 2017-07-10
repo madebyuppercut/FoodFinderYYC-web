@@ -42,6 +42,8 @@ export default class Navbar extends React.Component {
                 <label htmlFor="menu-toggle"><i className="fa fa-close"></i></label>
                 <ul>
                   <li><NavLink to="/about">about us</NavLink></li>
+                  <li><NavLink to="/privacy">privacy policy</NavLink></li>
+                  <li><NavLink to="/terms">terms of use</NavLink></li>
                 </ul>
                 &copy; {copyrightYear} {title}
               </div>

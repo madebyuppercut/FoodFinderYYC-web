@@ -60,3 +60,11 @@ input[type="email"] {
 .absolute {
   position: absolute;
 }
+
+ol.alpha {
+  list-style-type: lower-alpha;
+}
+
+ol.roman {
+  list-style-type: lower-roman;
+}

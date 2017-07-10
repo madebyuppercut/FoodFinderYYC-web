@@ -8,7 +8,7 @@ export default class Terms extends React.Component {
     return (
       <div className="terms">
         <div className="g-r">
-          <div className="g-c-s-12-12 p-t-2 p-b-6 p-lr-4 absolute" style={{overflowY: 'auto', height: '100%'}}>
+          <div className="g-c-s-12-12 p-t-2 p-b-6 p-lr-1 p-lr-4-m absolute" style={{overflowY: 'auto', height: '100%'}}>
             <h1>Website Terms and Conditions of Use Agreement</h1>
             <p>
               <strong>Last updated</strong>: June 27th, 2017

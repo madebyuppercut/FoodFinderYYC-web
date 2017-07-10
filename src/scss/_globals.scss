@@ -137,6 +137,26 @@ dl, dd {
   .p-lr-#{$i} { @include padOrMargin(padding, left right, #{$i}rem); }
 
   .p-a-#{$i} { @include padOrMargin(padding, top bottom left right, #{$i}rem); }
+
+  .m-t-#{$i}-s { @include padOrMargin(margin, top, #{$i}rem); }
+  .m-b-#{$i}-s { @include padOrMargin(margin, bottom, #{$i}rem); }
+  .m-l-#{$i}-s { @include padOrMargin(margin, left, #{$i}rem); }
+  .m-r-#{$i}-s { @include padOrMargin(margin, right, #{$i}rem); }
+
+  .m-tb-#{$i}-s { @include padOrMargin(margin, top bottom, #{$i}rem); }
+  .m-lr-#{$i}-s { @include padOrMargin(margin, left right, #{$i}rem); }
+
+  .m-a-#{$i}-s { @include padOrMargin(margin, top bottom left right, #{$i}rem); }
+
+  .p-t-#{$i}-s { @include padOrMargin(padding, top, #{$i}rem); }
+  .p-b-#{$i}-s { @include padOrMargin(padding, bottom, #{$i}rem); }
+  .p-l-#{$i}-s { @include padOrMargin(padding, left, #{$i}rem); }
+  .p-r-#{$i}-s { @include padOrMargin(padding, right, #{$i}rem); }
+
+  .p-tb-#{$i}-s { @include padOrMargin(padding, top bottom, #{$i}rem); }
+  .p-lr-#{$i}-s { @include padOrMargin(padding, left right, #{$i}rem); }
+
+  .p-a-#{$i}-s { @include padOrMargin(padding, top bottom left right, #{$i}rem); }
 }
 
 // Grid
@@ -335,6 +355,29 @@ dl, dd {
   [class*="v-m"], .h-s-only {
     display: block;
   }
+
+  // Padding and Margin Helpers
+  @for $i from 1 through $numberOfMarginPaddingClasses {
+    .m-t-#{$i}-m { @include padOrMargin(margin, top, #{$i}rem); }
+    .m-b-#{$i}-m { @include padOrMargin(margin, bottom, #{$i}rem); }
+    .m-l-#{$i}-m { @include padOrMargin(margin, left, #{$i}rem); }
+    .m-r-#{$i}-m { @include padOrMargin(margin, right, #{$i}rem); }
+
+    .m-tb-#{$i}-m { @include padOrMargin(margin, top bottom, #{$i}rem); }
+    .m-lr-#{$i}-m { @include padOrMargin(margin, left right, #{$i}rem); }
+
+    .m-a-#{$i}-m { @include padOrMargin(margin, top bottom left right, #{$i}rem); }
+
+    .p-t-#{$i}-m { @include padOrMargin(padding, top, #{$i}rem); }
+    .p-b-#{$i}-m { @include padOrMargin(padding, bottom, #{$i}rem); }
+    .p-l-#{$i}-m { @include padOrMargin(padding, left, #{$i}rem); }
+    .p-r-#{$i}-m { @include padOrMargin(padding, right, #{$i}rem); }
+
+    .p-tb-#{$i}-m { @include padOrMargin(padding, top bottom, #{$i}rem); }
+    .p-lr-#{$i}-m { @include padOrMargin(padding, left right, #{$i}rem); }
+
+    .p-a-#{$i}-m { @include padOrMargin(padding, top bottom left right, #{$i}rem); }
+  }
 }
 
 /* Large */
@@ -379,6 +422,29 @@ dl, dd {
 
   [class*="v-l"], .h-s-only, .h-m-only {
     display: block;
+  }
+
+  // Padding and Margin Helpers
+  @for $i from 1 through $numberOfMarginPaddingClasses {
+    .m-t-#{$i}-l { @include padOrMargin(margin, top, #{$i}rem); }
+    .m-b-#{$i}-l { @include padOrMargin(margin, bottom, #{$i}rem); }
+    .m-l-#{$i}-l { @include padOrMargin(margin, left, #{$i}rem); }
+    .m-r-#{$i}-l { @include padOrMargin(margin, right, #{$i}rem); }
+
+    .m-tb-#{$i}-l { @include padOrMargin(margin, top bottom, #{$i}rem); }
+    .m-lr-#{$i}-l { @include padOrMargin(margin, left right, #{$i}rem); }
+
+    .m-a-#{$i}-l { @include padOrMargin(margin, top bottom left right, #{$i}rem); }
+
+    .p-t-#{$i}-l { @include padOrMargin(padding, top, #{$i}rem); }
+    .p-b-#{$i}-l { @include padOrMargin(padding, bottom, #{$i}rem); }
+    .p-l-#{$i}-l { @include padOrMargin(padding, left, #{$i}rem); }
+    .p-r-#{$i}-l { @include padOrMargin(padding, right, #{$i}rem); }
+
+    .p-tb-#{$i}-l { @include padOrMargin(padding, top bottom, #{$i}rem); }
+    .p-lr-#{$i}-l { @include padOrMargin(padding, left right, #{$i}rem); }
+
+    .p-a-#{$i}-l { @include padOrMargin(padding, top bottom left right, #{$i}rem); }
   }
 }
 
