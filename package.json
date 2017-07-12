@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/madebyuppercut/FoodFinderYYC-web#readme",
   "engines": {
-    "node": "~6.10.1",
-    "npm": "~4.1.2"
+    "node": "^8.1.4",
+    "npm": "^5.0.0"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
