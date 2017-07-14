@@ -68,29 +68,25 @@ module.exports = function(env) {
       path: distPath
     },
     module: {
-      rules: [{
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            ['es2015', {'modules': false}],
-            'react'
-          ]
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: 'babel-loader'
+        }, {
+          test: /\.css$/,
+          use: scssConfig.extract(['css-loader'])
+        }, {
+          test: /\.(sass|scss)$/,
+          use: scssConfig.extract(['css-loader', 'sass-loader'])
+        }, {
+          test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+          loader: 'file-loader?name=fonts/[name].[ext]'
+        }, {
+          test: /\.(jpg|jpeg|gif|png|svg)$/,
+          loader: 'file-loader?name=img/[name].[ext]'
         }
-      }, {
-        test: /\.css$/,
-        use: scssConfig.extract(['css-loader'])
-      }, {
-        test: /\.(sass|scss)$/,
-        use: scssConfig.extract(['css-loader', 'sass-loader'])
-      }, {
-        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
-      }, {
-        test: /\.(jpg|jpeg|gif|png|svg)$/,
-        loader: 'file-loader?name=img/[name].[ext]'
-      }]
+      ]
     },
     plugins: [
       appConfig,

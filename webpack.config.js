@@ -23,7 +23,7 @@ const vendorConfig = new webpack.optimize.CommonsChunkPlugin({
 
 // CommonChunksPlugin will now extract all the common modules from vendor and main bundles
 const manifestConfig = new webpack.optimize.CommonsChunkPlugin({
-  name: 'manifest' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+  name: 'common' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
 });
 
 const scssConfig = new ExtractTextWebpackPlugin({
@@ -62,44 +62,40 @@ module.exports = function() {
       path: distPath
     },
     module: {
-      rules: [{
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            ['es2015', {'modules': false}],
-            'react'
-          ]
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: 'babel-loader'
+        }, {
+          test: /\.css$/,
+          use: scssConfig.extract(['css-loader'])
+        }, {
+          test: /\.(sass|scss)$/,
+          use: scssConfig.extract({
+            fallback: ['style-loader'],
+            loader: [{
+              loader: 'css-loader',
+              query: {
+                minimize: false,
+                sourceMap: true
+              }
+            }, {
+              loader: 'sass-loader',
+              query: {
+                sourceMap: true,
+                sourceMapContents: true
+              }
+            }]
+          })
+        }, {
+          test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+          use: 'file-loader?name=fonts/[name].[ext]'
+        }, {
+          test: /\.(jpg|jpeg|gif|png|svg)$/,
+          use: 'file-loader?name=img/[name].[ext]'
         }
-      }, {
-        test: /\.css$/,
-        use: scssConfig.extract(['css-loader'])
-      }, {
-        test: /\.(sass|scss)$/,
-        use: scssConfig.extract({
-          fallbackLoader: ['style-loader'],
-          loader: [{
-            loader: 'css-loader',
-            query: {
-              minimize: false,
-              sourceMap: true
-            }
-          }, {
-            loader: 'sass-loader',
-            query: {
-              sourceMap: true,
-              sourceMapContents: true
-            }
-          }]
-        })
-      }, {
-        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
-      }, {
-        test: /\.(jpg|jpeg|gif|png|svg)$/,
-        loader: 'file-loader?name=img/[name].[ext]'
-      }]
+      ]
     },
     devtool: 'source-map',
     devServer: { historyApiFallback: true },
