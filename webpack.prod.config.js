@@ -98,8 +98,7 @@ module.exports = function(env) {
       manifestConfig,
       faviconConfig,
       htmlWebpackPluginConfig,
-      scssConfig,
-      uglifyConfig
+      scssConfig
     ]
   };
 };
