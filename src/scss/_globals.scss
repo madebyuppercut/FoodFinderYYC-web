@@ -111,6 +111,10 @@ dl, dd {
   display: none !important;
 }
 
+.v-s-only, .v-s-and-up {
+  display: inherit !important;
+}
+
 // Text Alignment Helpers
 .t-center { text-align: center; }
 .t-left   { text-align: left; }
