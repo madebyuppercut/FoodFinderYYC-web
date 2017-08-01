@@ -245,7 +245,7 @@ dl, dd {
 
 // Visibility Helpers
 [class*="h-s"], [class*="v-m"], [class*="v-l"] {
-  display: none;
+  display: none !important;
 }
 
 // Full Screen
@@ -349,11 +349,11 @@ dl, dd {
   }
 
   [class*="h-m"], .v-s-only {
-    display: none;
+    display: none !important;
   }
 
   [class*="v-m"], .h-s-only {
-    display: block;
+    display: inherit !important;
   }
 
   // Padding and Margin Helpers
@@ -417,11 +417,11 @@ dl, dd {
   }
 
   [class*="h-l"], .v-s-only, .v-m-only {
-    display: none;
+    display: none !important;
   }
 
   [class*="v-l"], .h-s-only, .h-m-only {
-    display: block;
+    display: inherit !important;
   }
 
   // Padding and Margin Helpers

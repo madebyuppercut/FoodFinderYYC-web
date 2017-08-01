@@ -41,6 +41,10 @@ export default class Navbar extends React.Component {
               <div className="menu-side">
                 <label htmlFor="menu-toggle"><i className="fa fa-close"></i></label>
                 <ul>
+                  <li>
+                    <a className="v-s-only" href="sms:5873180232;?&body=FOOD">Text "Food" to<br/>587-318-0232</a>
+                    <a className="h-s-only" href="#">Text "Food" to<br/>587-318-0232</a>
+                  </li>
                   <li><NavLink to="/about">about us</NavLink></li>
                   <li><NavLink to="/privacy">privacy policy</NavLink></li>
                   <li><NavLink to="/terms">terms of use</NavLink></li>

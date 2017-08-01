@@ -1,3 +1,21 @@
+@import "settings";
+
 .intro {
   background: transparent url('../img/bg.png') repeat repeat center top;
+
+  .sms {
+    background: white;
+    border: 2px solid $app-primary;
+    color: $app-primary;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    text-transform: uppercase;
+  }
+
+  .red {
+    background: $app-primary;
+    color: white;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
