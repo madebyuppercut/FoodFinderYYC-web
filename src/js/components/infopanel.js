@@ -146,17 +146,15 @@ export default class InfoPanel extends Component {
     restrictions = info.restrictions ? (
       <div className="info restrictions">
         <i className="fa fa-pencil"></i>
-        <p>{info.restrictions}</p>
+        <p dangerouslySetInnerHTML={{__html: info.restrictions}}></p>
       </div>
     ) : null;
 
     description = info.description ? (
       <div className="info description">
         <i className="fa fa-info-circle"></i>
-        <p>
-          <strong>More Information:</strong><br/>
-          {info.description}
-        </p>
+        <p><strong>More Information:</strong></p>
+        <p dangerouslySetInnerHTML={{__html: info.description}}></p>
       </div>
     ) : null;
 
