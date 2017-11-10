@@ -26,11 +26,16 @@ export default class Navbar extends React.Component {
     return (
       <header>
         <nav role="navigation" className={hideClass}>
-          <div className="title g-c-s-2-8 g-c-m-4-12 g-c-l-2-12">
-            <a href="/"><img src={Logo} alt="Food Finder YYC" className="logo v-m"/></a>
-            <a href="/"><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only"/></a>
+          <div className="title g-c-s-6-8 g-c-m-8-12">
+            <div className="g-r middle">
+              <a href="/"><img src={Logo} alt="Food Finder YYC" className="logo v-m" /></a>
+              <a href="/"><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only" /></a>
+              <i className="fa fa-facebook"><a href="https://www.facebook.com/FoodFinderYYC/"></a></i>
+              <i className="fa fa-instagram"><a href="https://www.instagram.com/"></a></i>
+              <i className="fa fa-twitter"><a href="https://twitter.com/FoodFinderYYC"></a></i>
+            </div>
           </div>
-          <div className="menu-search g-c-s-6-8 g-c-m-8-12 g-c-l-10-12">
+          <div className="menu-search g-c-s-2-8 g-c-m-4-12">
             <div className="search p-lr-1 hidden">
               <i className="fa fa-search m-r-1"></i>
               <input type="text" placeholder="Search" />

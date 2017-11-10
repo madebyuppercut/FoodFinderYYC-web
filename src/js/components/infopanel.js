@@ -75,6 +75,7 @@ export default class InfoPanel extends Component {
     let shifts;
     let restrictions;
     let description;
+    let dietaryOptions;
 
     if (info.address) {
       let fullAddress = info.address + ' ' + info.city + ' ' + info.province;
@@ -110,6 +111,19 @@ export default class InfoPanel extends Component {
         );
       }
     });
+
+    if (info.dietaryOptions) {
+      dietaryOptions = info.dietaryOptions.map(
+        option => {
+          return (
+            <div className="info dietary" key={option}>
+              <i className={option}></i>
+              <p>{option}</p>
+            </div>
+          )
+        }
+      )
+    }
 
     if (info.phone) {
       phoneUrl = 'tel:' + info.phone.replace(phoneRegex, '');
@@ -176,6 +190,7 @@ export default class InfoPanel extends Component {
           {hours}
           {restrictions}
           {description}
+          {dietaryOptions}
         </section>
       </div>
     );
