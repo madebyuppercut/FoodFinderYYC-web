@@ -9,6 +9,10 @@ import ImageLunch from '../../img/meal-lunch.png';
 import ImageSnacks from '../../img/meal-snacks.png';
 import ImageDinner from '../../img/meal-dinner.png';
 import ImageHamper from '../../img/meal-hamper.png';
+import ImageDietHalal from '../../img/diet-halal.png';
+import ImageDietKosher from '../../img/diet-kosher.png';
+import ImageDietVegetarian from '../../img/diet-vegetarian.png';
+
 
 const spaceRegex = /\s/g;
 const phoneRegex = /(\(|\)|-|\.)+/g;
@@ -30,7 +34,13 @@ const mealImages = {
     image: ImageHamper,
     text: 'food hamper'
   }
-};
+}
+
+const dietImages = {
+  halal: ImageDietHalal,
+  kosher: ImageDietKosher,
+  vegetarian: ImageDietVegetarian
+}
 
 function mapClientDetect() {
   if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
@@ -114,12 +124,12 @@ export default class InfoPanel extends Component {
 
     if (info.dietaryOptions) {
       dietaryOptions = info.dietaryOptions.map(
-        option => {
+        diet => {
           return (
-            <div className="info dietary" key={option}>
-              <i className={option}></i>
-              <p>{option}</p>
-            </div>
+            <span className="dietary" key={diet}>
+              <img src={dietImages[diet]} />
+              <span>{diet.toUpperCase()}</span>
+            </span>
           )
         }
       )
@@ -180,7 +190,7 @@ export default class InfoPanel extends Component {
           {address}
         </section>
         <section>
-          <h2>Serving:</h2>
+          <h2>Serving: {dietaryOptions}</h2>
           <ul className="meals">
             {meals}
           </ul>
@@ -190,7 +200,6 @@ export default class InfoPanel extends Component {
           {hours}
           {restrictions}
           {description}
-          {dietaryOptions}
         </section>
       </div>
     );

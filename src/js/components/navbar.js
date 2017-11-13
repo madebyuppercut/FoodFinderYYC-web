@@ -30,9 +30,6 @@ export default class Navbar extends React.Component {
             <div className="g-r middle">
               <a href="/"><img src={Logo} alt="Food Finder YYC" className="logo v-m" /></a>
               <a href="/"><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only" /></a>
-              <i className="fa fa-facebook"><a href="https://www.facebook.com/FoodFinderYYC/"></a></i>
-              <i className="fa fa-instagram"><a href="https://www.instagram.com/"></a></i>
-              <i className="fa fa-twitter"><a href="https://twitter.com/FoodFinderYYC"></a></i>
             </div>
           </div>
           <div className="menu-search g-c-s-2-8 g-c-m-4-12">
@@ -50,11 +47,14 @@ export default class Navbar extends React.Component {
                     <a className="v-s-only" href="sms:5873180232;?&body=FOOD">Text "Food" to<br/>587-318-0232</a>
                     <a className="h-s-only" href="#">Text "Food" to<br/>587-318-0232</a>
                   </li>
-                  <li><NavLink to="/about">about us</NavLink></li>
-                  <li><NavLink to="/privacy">privacy policy</NavLink></li>
-                  <li><NavLink to="/terms">terms of use</NavLink></li>
+                  <li><NavLink to="/about">&gt; about us</NavLink></li>
+                  <li><NavLink to="/privacy">&gt; privacy policy</NavLink></li>
+                  <li><NavLink to="/terms">&gt; terms of use</NavLink></li>
                 </ul>
-                &copy; {copyrightYear} {title}
+                <i className="fa fa-facebook"><a href="https://www.facebook.com/FoodFinderYYC/"></a></i>
+                <i className="fa fa-instagram"><a href="https://www.instagram.com/foodfinderyyc/"></a></i>
+                <i className="fa fa-twitter"><a href="https://twitter.com/FoodFinderYYC"></a></i>
+                <div className="m-t-1">&copy; {copyrightYear} {title}</div>
               </div>
             </div>
           </div>
