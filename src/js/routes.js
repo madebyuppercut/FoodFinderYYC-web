@@ -44,9 +44,9 @@ export default class Routes extends React.Component {
         cookies.set('skipIntro', true);
         return <Redirect to="/intro"/>;
       }
-    } else {
+    } /*else {
       return <Redirect to="/signup"/>;
-    }
+    } */
   }
 
   render() {
