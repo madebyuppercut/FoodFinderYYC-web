@@ -45,7 +45,7 @@ export default class Routes extends React.Component {
         return <Redirect to="/intro"/>;
       }
     } else {
-      return <Redirect to="/signUp"/>;
+      return <Redirect to="/signup"/>;
     }
   }
 
