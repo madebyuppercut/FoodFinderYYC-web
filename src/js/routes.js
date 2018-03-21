@@ -14,7 +14,7 @@ import Cookies from 'universal-cookie';
 import App from './containers/app';
 import GA from './components/ga';
 /*import SignUp from './scenes/signup'; */
-import Intro from './scenes/intro';
+/* import Intro from './scenes/intro'; */
 import Terms from './scenes/terms';
 import About from './scenes/about';
 import Privacy from './scenes/privacy';
@@ -37,7 +37,7 @@ export default class Routes extends React.Component {
 
     // When it's July 1, or in non-prod environments, check cookie and either send user to search or intro, otherwise send to sign up
     console.log(ENV.NODE_ENV);
-    if ((today.getMonth() >= 6 && today.getFullYear() >= 2018) || ENV.NODE_ENV !== 'production') {
+    if ((today.getMonth() >= 2 && today.getFullYear() >= 2018) || ENV.NODE_ENV !== 'production') {
       if (hasCookie) {
         return <Redirect to="/search"/>;
       } else {
