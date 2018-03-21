@@ -60,7 +60,7 @@ export default class Routes extends React.Component {
             <Route path="/about" component={About} />
             <Route path="/intro" component={Intro} />
             <Route path="/terms" component={Terms} />
-            <Route path="/signup" component={SignUp} />
+            /* <Route path="/signup" component={SignUp} /> */
             <Route path="/privacy" component={Privacy} />
             <Route component={NotFound} />
           </Switch>
