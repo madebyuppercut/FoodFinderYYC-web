@@ -29,7 +29,7 @@ export default class Routes extends React.Component {
     };
   }
 
-  doRedirect() {
+  /*doRedirect() {
     const cookies = new Cookies();
     const today = new Date();
 
@@ -46,7 +46,7 @@ export default class Routes extends React.Component {
       }
     } else {
       return <Redirect to="/signup"/>;
-    }
+    }*/
   }
 
   render() {
