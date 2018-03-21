@@ -40,13 +40,13 @@ export default class Routes extends React.Component {
     if ((today.getMonth() >= 6 && today.getFullYear() >= 2017) || ENV.NODE_ENV !== 'production') {
       if (hasCookie) {
         return <Redirect to="/search"/>;
-      } /*else {
+      } else {
         cookies.set('skipIntro', true);
         return <Redirect to="/intro"/>;
       }
     } else {
       return <Redirect to="/signup"/>;
-    }*/
+    }
   }
 
   render() {
