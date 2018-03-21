@@ -13,7 +13,7 @@ import Cookies from 'universal-cookie';
 
 import App from './containers/app';
 import GA from './components/ga';
-import SignUp from './scenes/signup';
+/*import SignUp from './scenes/signup'; */
 import Intro from './scenes/intro';
 import Terms from './scenes/terms';
 import About from './scenes/about';
