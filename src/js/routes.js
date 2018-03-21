@@ -36,7 +36,7 @@ export default class Routes extends React.Component {
     let hasCookie = cookies.get('skipIntro');
 
     // When it's July 1, or in non-prod environments, check cookie and either send user to search or intro, otherwise send to sign up
-    /* console.log(ENV.NODE_ENV);
+     console.log(ENV.NODE_ENV);
     if ((today.getMonth() >= 6 && today.getFullYear() >= 2017) || ENV.NODE_ENV !== 'production') {
       if (hasCookie) {
         return <Redirect to="/search"/>;
@@ -67,5 +67,5 @@ export default class Routes extends React.Component {
         </App>
       </BrowserRouter>
     );
-  } */
+  }
 };
