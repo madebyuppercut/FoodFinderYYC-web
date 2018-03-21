@@ -42,10 +42,10 @@ export default class Routes extends React.Component {
         return <Redirect to="/Search"/>;
       } else {
         cookies.set('skipIntro', true);
-        return <Redirect to="/Intro"/>;
+        return <Redirect to="/intro"/>;
       }
     } else {
-      return <Redirect to="/SignUp"/>;
+      return <Redirect to="/signUp"/>;
     }
   }
 
