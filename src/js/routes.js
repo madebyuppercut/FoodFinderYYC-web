@@ -39,13 +39,13 @@ export default class Routes extends React.Component {
      console.log(ENV.NODE_ENV);
     if ((today.getMonth() >= 6 && today.getFullYear() >= 2017) || ENV.NODE_ENV !== 'production') {
       if (hasCookie) {
-        return <Redirect to="/search"/>;
+        return <Redirect to="/Search"/>;
       } else {
         cookies.set('skipIntro', true);
-        return <Redirect to="/search"/>;
+        return <Redirect to="/Intro"/>;
       }
     } else {
-      return <Redirect to="/search"/>;
+      return <Redirect to="/SignUp"/>;
     }
   }
 
