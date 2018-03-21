@@ -51,7 +51,7 @@ export default class Routes extends React.Component {
 
   render() {
     return (
-    /*  <BrowserRouter history={Router.history}>
+      <BrowserRouter history={Router.history}>
         <App>
           <Route component={GA}/>
           <Switch>
@@ -65,7 +65,7 @@ export default class Routes extends React.Component {
             <Route component={NotFound} />
           </Switch>
         </App>
-      </BrowserRouter>*/
+      </BrowserRouter>
     );
   }
 };
