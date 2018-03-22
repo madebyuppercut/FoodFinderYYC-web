@@ -1,0 +1,41 @@
+{
+  "name": "FoodFinderYYC-web",
+  "scripts": {
+  },
+  "env": {
+    "GOOGLE_GA": {
+      "required": true
+    },
+    "GOOGLE_MAP": {
+      "required": true
+    },
+    "GOOGLE_ZOOM": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "PARSE_APP_ID": {
+      "required": true
+    },
+    "PARSE_JS_KEY": {
+      "required": true
+    },
+    "PARSE_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
