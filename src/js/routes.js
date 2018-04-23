@@ -30,7 +30,8 @@ export default class Routes extends React.Component {
   }
 
   doRedirect() {
-    const cookies = new Cookies();
+    return <Redirect to="/search"/>;
+   /* const cookies = new Cookies();
     const today = new Date();
 
     let hasCookie = cookies.get('skipIntro');
@@ -46,7 +47,7 @@ export default class Routes extends React.Component {
       }
     } else {
       return <Redirect to="/signup"/>;
-    }
+    }*/
   }
 
   render() {
