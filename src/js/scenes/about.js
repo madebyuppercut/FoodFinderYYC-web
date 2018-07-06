@@ -31,7 +31,7 @@ export default class Intro extends React.Component {
               <span className="strong">Why:</span> Because you matter, because food and health matter. Because the struggle doesn't have to be real this summer.
             </p>
             <p className="tag">
-              <span className="strong">Donate:</span>https://www.canadahelps.org/en/dn/m/36061/donation
+              <span className="strong"> Donate:</span>https://www.canadahelps.org/en/dn/m/36061/donation
             </p>
           </div>
         </div>
