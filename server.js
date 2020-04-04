@@ -28,9 +28,8 @@
     }
     next();
   });
-
   // static file serve
   app.use('/', express.static(__dirname + '/dist'));
   app.use('/*', express.static(__dirname + '/dist/index.html'));
-  app.listen(process.env.PORT || 3000);
+  app.listen(process.env.PORT || 3000, function() {console.log(`Server running on: http://127.0.0.1:${process.env.PORT || 3000}`)});
 })();
