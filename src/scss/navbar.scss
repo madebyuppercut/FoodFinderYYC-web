@@ -26,6 +26,13 @@ nav[role="navigation"] {
     margin: 0;
   }
 
+  .title {
+    display: flex;
+    a {
+      margin-right: 20px;
+    }
+  }
+
   .menu-search {
     text-align: right;
 
