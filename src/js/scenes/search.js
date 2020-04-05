@@ -144,18 +144,14 @@ export default class Search extends React.Component {
                   <label htmlFor="meals-snacks">Snacks</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="meals-dinner" name="[meals]" value="dinner" className="hidden" onChange={this.onChangeMeal.bind(this)}/>
+                  <input type="checkbox" id="meals-dinner" name="[meals]" value="dinner" className="hidden" defaultChecked onChange={this.onChangeMeal.bind(this)}/>
                   <label htmlFor="meals-dinner">Dinner</label>
                 </li>
                 <li>
-                  <input type="checkbox" id="meals-hamper" name="[meals]" value="hamper" className="hidden" onChange={this.onChangeMeal.bind(this)}/>
+                  <input type="checkbox" id="meals-hamper" name="[meals]" value="hamper" className="hidden" defaultChecked onChange={this.onChangeMeal.bind(this)}/>
                   <label htmlFor="meals-hamper">Food Hamper</label>
                 </li>
               </ul>
-            </dd>
-            <dd className="no-id h-s-only">
-              <input type="checkbox" id="no-id" name="no-id" onChange={this.onChangeId.bind(this)}/>
-              <label htmlFor="no-id">I have no ID or referrals</label>
             </dd>
           </dl>
         </form>

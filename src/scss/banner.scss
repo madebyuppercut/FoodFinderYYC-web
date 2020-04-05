@@ -1,0 +1,16 @@
+@import "settings";
+
+.banner {
+  font-family: $font-family-secondary;
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 10px;
+  color: $app-background;
+  background-color: $app-primary;
+}
+
+@media screen and (min-width: 40rem) {
+  .banner {
+    font-size: 0.75rem;
+  }
+}
