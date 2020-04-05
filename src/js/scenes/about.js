@@ -30,6 +30,9 @@ export default class Intro extends React.Component {
             <p className="tag">
               <span className="strong">Why:</span> Because you matter, because food and health matter. Because the struggle doesn't have to be real this summer.
             </p>
+            <p className="tag">
+              <span className="strong">Donate:</span> Join us. Help feed hungry kids this summer. Donate<a href="https://www.canadahelps.org/en/dn/m/36061/donation"> HERE</a>
+            </p>
           </div>
         </div>
       </div>
