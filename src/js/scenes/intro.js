@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 // assets
 import '../../scss/intro.scss';
 import Logo from '../../img/logo2.svg';
+import { SEARCH_PATH, TERMS_PATH } from '../route_path';
 
 export default class Intro extends React.Component {
   render() {
@@ -35,11 +36,11 @@ export default class Intro extends React.Component {
                 <div className="g-c-s-12-12 g-c-m-2-12 t-center">
                 </div>
                 <div className="g-c-s-12-12 g-c-m-5-12 m-t-1 t-center">
-                  <Link to="/search" className="b red v-s-and-up">Search <i className="fa fa-chevron-right"></i></Link>
+                  <Link to={SEARCH_PATH} className="b red v-s-and-up">Search <i className="fa fa-chevron-right"></i></Link>
                 </div>
               </div>
               <p>
-                By proceeding you are agreeing to our <Link to="/terms">Terms of Use</Link>.
+                By proceeding you are agreeing to our <Link to={TERMS_PATH}>Terms of Use</Link>.
               </p>
             </div>
           </div>
