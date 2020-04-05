@@ -17,6 +17,7 @@ import SignUp from './scenes/signup';
 import Intro from './scenes/intro';
 import Terms from './scenes/terms';
 import About from './scenes/about';
+import Help from './scenes/help'
 import Privacy from './scenes/privacy';
 import Search from './scenes/search';
 import NotFound from './scenes/notfound';
@@ -25,11 +26,13 @@ import {
   ROOT_PATH,
   SEARCH_PATH,
   ABOUT_PATH,
+  HELP_PATH,
   INTRO_PATH,
   TERMS_PATH,
   SINGUP_PATH,
   PRIVACY_PATH,
 } from './route_path'
+
 export default class Routes extends React.Component {
   constructor(props) {
     super(props);
@@ -68,6 +71,7 @@ export default class Routes extends React.Component {
             <Route exact path={ROOT_PATH} render={this.doRedirect} />
             <Route path={SEARCH_PATH} component={Search} />
             <Route path={ABOUT_PATH}component={About} />
+            <Route path={HELP_PATH}component={Help} />
             <Route path={INTRO_PATH}component={Intro} />
             <Route path={TERMS_PATH}component={Terms} />
             <Route path={SINGUP_PATH}component={SignUp} />

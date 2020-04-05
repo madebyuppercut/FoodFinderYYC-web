@@ -1,6 +1,7 @@
 export const ROOT_PATH = "/"
 export const SEARCH_PATH = "/search"
 export const ABOUT_PATH = "/about"
+export const HELP_PATH = "/help"
 export const INTRO_PATH = "/intro"
 export const TERMS_PATH = "/terms"
 export const SINGUP_PATH = "/signup"

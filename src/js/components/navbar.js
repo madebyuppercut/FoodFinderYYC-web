@@ -11,6 +11,14 @@ import Logo from '../../img/logo.png';
 import LogoSmall from '../../img/logo-s.png';
 import BB4CKLogo from '../../img/bb4ck-logo.png'
 
+import {
+  ROOT_PATH,
+  ABOUT_PATH,
+  HELP_PATH,
+  TERMS_PATH,
+  PRIVACY_PATH,
+} from '../route_path'
+
 export default class Navbar extends React.Component {
   static get propTypes() {
     return {
@@ -28,8 +36,8 @@ export default class Navbar extends React.Component {
       <header>
         <nav role="navigation" className={hideClass}>
           <div className="title g-c-s-5-8 g-c-m-8-12 g-c-l-4-12">
-            <a href="/" className="v-m"><img src={Logo} alt="Food Finder YYC" className="logo"/></a>
-            <a href="/" className="v-s-only"><img src={LogoSmall} alt="Food Finder YYC" className="logo"/></a>
+            <a href={ROOT_PATH}><img src={Logo} alt="Food Finder YYC" className="logo v-m"/></a>
+            <a href={ROOT_PATH}><img src={LogoSmall} alt="Food Finder YYC" className="logo v-s-only"/></a>
             <a href="https://bb4ck.org/">
               <img
                 src={BB4CKLogo}
@@ -53,9 +61,10 @@ export default class Navbar extends React.Component {
                     <a className="v-s-only" href="sms:5873180232;?&body=FOOD">Text "Food" to<br/>587-318-0232</a>
                     <a className="h-s-only" href="#">Text "Food" to<br/>587-318-0232</a>
                   </li>
-                  <li><NavLink to="/about">about us</NavLink></li>
-                  <li><NavLink to="/privacy">privacy policy</NavLink></li>
-                  <li><NavLink to="/terms">terms of use</NavLink></li>
+                  <li><NavLink to={ABOUT_PATH}>about us</NavLink></li>
+                  <li><NavLink to={HELP_PATH}>help</NavLink></li>
+                  <li><NavLink to={PRIVACY_PATH}>privacy policy</NavLink></li>
+                  <li><NavLink to={TERMS_PATH}>terms of use</NavLink></li>
                 </ul>
                 &copy; {copyrightYear} {title}
               </div>
