@@ -21,6 +21,15 @@ import Privacy from './scenes/privacy';
 import Search from './scenes/search';
 import NotFound from './scenes/notfound';
 
+import {
+  ROOT_PATH,
+  SEARCH_PATH,
+  ABOUT_PATH,
+  INTRO_PATH,
+  TERMS_PATH,
+  SINGUP_PATH,
+  PRIVACY_PATH,
+} from './route_path'
 export default class Routes extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +39,7 @@ export default class Routes extends React.Component {
   }
 
   doRedirect() {
-    return <Redirect to="/search"/>;
+    return <Redirect to={SEARCH_PATH} />;
    /* const cookies = new Cookies();
     const today = new Date();
 
@@ -40,7 +49,7 @@ export default class Routes extends React.Component {
      console.log(ENV.NODE_ENV);
     if ((today.getMonth() >= 6 && today.getFullYear() >= 2017) || ENV.NODE_ENV !== 'production') {
       if (hasCookie) {
-        return <Redirect to="/search"/>;
+        return <Redirect to={SEARCH_PATH}/>;
       } else {
         cookies.set('skipIntro', true);
         return <Redirect to="/intro"/>;
@@ -56,13 +65,13 @@ export default class Routes extends React.Component {
         <App>
           <Route component={GA}/>
           <Switch>
-            <Route exact path="/" render={this.doRedirect} />
-            <Route path="/search" component={Search} />
-            <Route path="/about" component={About} />
-            <Route path="/intro" component={Intro} />
-            <Route path="/terms" component={Terms} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/privacy" component={Privacy} />
+            <Route exact path={ROOT_PATH} render={this.doRedirect} />
+            <Route path={SEARCH_PATH} component={Search} />
+            <Route path={ABOUT_PATH}component={About} />
+            <Route path={INTRO_PATH}component={Intro} />
+            <Route path={TERMS_PATH}component={Terms} />
+            <Route path={SINGUP_PATH}component={SignUp} />
+            <Route path={PRIVACY_PATH}component={Privacy} />
             <Route component={NotFound} />
           </Switch>
         </App>
